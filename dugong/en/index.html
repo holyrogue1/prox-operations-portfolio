@@ -193,13 +193,13 @@
           <h2 id="quality-title">The test focus is not feature count. It is whether contracts and trust boundaries keep holding.</h2>
           <p>
             Coverage includes analysis, recommendation, pipeline, database migration, CLI JSON envelopes, feedback labels, telemetry raw-text blocking,
-            and the data-quality gate. A local source check on 2026-08-10 completed 488 Python tests successfully.
+            and the data-quality gate. A local source check on 2026-08-10 completed 492 Python tests successfully.
           </p>
         </div>
         <div class="evidence-grid">
           <article class="evidence-fact evidence-fact-positive">
             <p>Local tests</p>
-            <strong>488</strong>
+            <strong>492</strong>
             <span>pytest passed on 2026-08-10</span>
           </article>
           <article class="evidence-fact">
@@ -252,8 +252,9 @@
           </li>
         </ol>
         <div class="ml-boundary">
-          <p><strong>Implemented now</strong>Diagnosis, recommendation, security judgement, feedback, export, audit, and workflow gates remain operating evidence.</p>
-          <p><strong>Intentionally held back</strong>Automatic training, automatic approval, individual scoring, central raw-text collection, and financial-data mutation are out of scope.</p>
+          <p><strong>Implemented now</strong>Diagnosis, recommendation, security judgement, feedback, export, audit, and workflow gates remain operating evidence. The PyTorch experiment readiness module checks export, audit, target validation, labels and classes, group diversity, leakage, high-risk review, and explicit human approval together.</p>
+          <p><strong>PyTorch boundary</strong>Even after every condition passes, the decision is limited to shadow experiment only. <code>training_started</code> remains false, and this module does not import PyTorch, create a model, or train one.</p>
+          <p><strong>Intentionally held back</strong>Automatic training, automatic approval, individual scoring, central raw-text collection, and financial-data mutation are out of scope. <a href="../../assets/dugong-pytorch-source.html" target="_blank" rel="noopener">Open the PyTorch readiness source</a></p>
         </div>
       </section>
     </main>

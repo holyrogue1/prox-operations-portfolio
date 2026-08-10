@@ -193,13 +193,13 @@
           <h2 id="quality-title">기능 수보다, 계약과 보안 경계가 회귀하지 않는지를 확인했습니다.</h2>
           <p>
             분석, 추천, 파이프라인, DB migration, CLI JSON envelope, 피드백 라벨, telemetry 원문 차단과 데이터 품질 gate를
-            테스트 범위로 두었습니다. 2026-08-10 로컬 소스 검증에서는 Python 테스트 488건이 통과했습니다.
+            테스트 범위로 두었습니다. 2026-08-10 로컬 소스 검증에서는 Python 테스트 492건이 통과했습니다.
           </p>
         </div>
         <div class="evidence-grid">
           <article class="evidence-fact evidence-fact-positive">
             <p>로컬 테스트</p>
-            <strong>488</strong>
+            <strong>492</strong>
             <span>2026-08-10 pytest 통과</span>
           </article>
           <article class="evidence-fact">
@@ -252,8 +252,9 @@
           </li>
         </ol>
         <div class="ml-boundary">
-          <p><strong>현재 구현</strong>진단, 추천, 보안 판단, 피드백, export, audit와 workflow gate를 운영 근거로 유지합니다.</p>
-          <p><strong>의도적으로 보류</strong>자동 학습, 자동 승인, 개인 평가, 원문 기반 중앙 수집과 재정 데이터 변경은 범위에 넣지 않습니다.</p>
+          <p><strong>현재 구현</strong>진단, 추천, 보안 판단, 피드백, export, audit와 workflow gate를 운영 근거로 유지합니다. PyTorch 실험 준비 모듈은 export, audit, target 검증, 라벨과 클래스, 그룹 다양성, 누수, 고위험 검토, 사람의 명시적 승인을 함께 확인합니다.</p>
+          <p><strong>PyTorch 경계</strong>모든 조건이 통과해도 결과는 shadow experiment only입니다. <code>training_started</code>는 계속 false이며, 이 모듈은 PyTorch를 import하거나 모델을 만들고 학습시키지 않습니다.</p>
+          <p><strong>의도적으로 보류</strong>자동 학습, 자동 승인, 개인 평가, 원문 기반 중앙 수집과 재정 데이터 변경은 범위에 넣지 않습니다. <a href="../assets/dugong-pytorch-source.html" target="_blank" rel="noopener">PyTorch 준비 코드 보기</a></p>
         </div>
       </section>
     </main>

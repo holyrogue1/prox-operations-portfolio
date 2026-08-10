@@ -787,6 +787,13 @@ h3 {
   max-width: var(--table-min-width);
 }
 
+.ml-code-heading h1 {
+  font-size: var(--font-title);
+  line-height: 1.18;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
 .ml-code-heading code {
   color: var(--color-blue-deep);
   font-family: ui-monospace, "Cascadia Code", "D2Coding", monospace;

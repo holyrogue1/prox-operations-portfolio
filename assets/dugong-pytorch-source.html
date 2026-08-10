@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dugong PyTorch Readiness Source</title>
+    <link rel="stylesheet" href="../style.css?v=20260810-dugong-pytorch2" />
+  </head>
+  <body>
+    <main>
+      <section class="section ml-code-evidence" aria-labelledby="pytorch-source-title">
+        <div class="section-heading ml-code-heading">
+          <p class="rule-label">GOVERNED PYTORCH READINESS</p>
+          <h1 id="pytorch-source-title">src/ml/pytorch_readiness.py</h1>
+          <p>Public source excerpt for a read-only future shadow-experiment boundary. No PyTorch runtime, model, dataset, or training process starts here.</p>
+        </div>
+        <div class="ml-code-frame">
+          <pre><code>"""Fail-closed readiness assessment for a future PyTorch shadow experiment."""
+
+from __future__ import annotations
+
+from collections.abc import Mapping
+from dataclasses import dataclass
+from typing import Any
+
+from .workflow.gates import (
+    BLOCK,
+    PASS,
+    GateResult,
+    gate_data_audit_passed,
+    gate_data_export_ready,
+    gate_dataset_not_quarantined,
+    gate_min_group_count,
+    gate_model_baseline_ready,
+    gate_target_trainable_task_type,
+)
+
+PYTORCH_EXPERIMENT_READINESS_VERSION = "pytorch-experiment-readiness-1.0"
+PYTORCH_FRAMEWORK = "pytorch"
+PYTORCH_TARGET = "task_type"
+NOT_STARTED = "not_started"
+SHADOW_EXPERIMENT_ONLY = "shadow_experiment_only"
+
+
+@dataclass(frozen=True)
+class PyTorchExperimentReadiness:
+    version: str
+    framework: str
+    target: str
+    status: str
+    experiment_allowed: bool
+    training_started: bool
+    mode: str
+    gates: tuple[GateResult, ...]
+    blockers: tuple[str, ...]
+    required_controls: tuple[str, ...]
+
+
+def assess_pytorch_experiment(
+    snapshot: Mapping[str, Any], *, human_training_approved: bool = False
+) -&gt; PyTorchExperimentReadiness:
+    state = dict(snapshot)
+    gates = (
+        gate_data_export_ready(state),
+        gate_data_audit_passed(state),
+        gate_dataset_not_quarantined(state),
+        gate_target_trainable_task_type(state),
+        gate_model_baseline_ready(state),
+        gate_min_group_count(state),
+    )
+    blockers = tuple(
+        f"{gate.gate}: {gate.reason}" for gate in gates if gate.status != PASS
+    )
+    if not human_training_approved:
+        blockers = (*blockers, "explicit human training approval is required")
+
+    controls = (
+        "human_training_approval",
+        "frozen_dataset_version",
+        "reproducible_training_manifest",
+        "shadow_experiment_only",
+        "human_review_before_promotion",
+    )
+    if blockers:
+        return PyTorchExperimentReadiness(
+            version=PYTORCH_EXPERIMENT_READINESS_VERSION,
+            framework=PYTORCH_FRAMEWORK,
+            target=PYTORCH_TARGET,
+            status=BLOCK,
+            experiment_allowed=False,
+            training_started=False,
+            mode=NOT_STARTED,
+            gates=gates,
+            blockers=blockers,
+            required_controls=controls,
+        )
+
+    return PyTorchExperimentReadiness(
+        version=PYTORCH_EXPERIMENT_READINESS_VERSION,
+        framework=PYTORCH_FRAMEWORK,
+        target=PYTORCH_TARGET,
+        status="READY",
+        experiment_allowed=True,
+        training_started=False,
+        mode=SHADOW_EXPERIMENT_ONLY,
+        gates=gates,
+        blockers=(),
+        required_controls=controls,
+    )</code></pre>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
