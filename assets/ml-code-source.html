@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prox ML Code Evidence</title>
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+  <body>
+    <main>
+      <section class="section ml-code-evidence" id="training-gate" aria-labelledby="training-gate-title">
+        <div class="section-heading ml-code-heading">
+          <p class="rule-label">실제 소스</p>
+          <h1 id="training-gate-title">backend/app/ml/training_gate.py</h1>
+          <p>학습을 시작하지 않는 읽기 전용 안전 게이트입니다.</p>
+        </div>
+        <div class="ml-code-frame">
+          <pre><code>"""Read-only safety gate for future candidate-ranking model training.
+
+This module deliberately cannot start a model run.  It only reports whether
+human-review evidence exists and keeps the final training decision manual.
+"""
+
+from __future__ import annotations
+
+from collections.abc import Mapping
+from datetime import datetime
+
+T5_GATE_VERSION = "t5-readiness-v1"
+MIN_REVIEW_WINDOW_DAYS = 14
+
+POSITIVE_DECISIONS = frozenset({"user_confirmed", "user_corrected"})
+HARD_NEGATIVE_DECISION = "user_rejected"
+
+
+def assess_t5_readiness(
+    decision_counts: Mapping[str, int],
+    *,
+    first_decision_at: datetime | None,
+    last_decision_at: datetime | None,
+    hard_negative_from_corrected: int = 0,
+    soft_deleted_count: int = 0,
+    active_decision_days: int | None = None,
+    match_method_counts: Mapping[str, int] | None = None,
+) -&gt; dict[str, object]:
+    """Return a conservative, non-mutating T5 readiness report.
+
+    The gate deliberately has no ``READY`` state.  Even after basic evidence
+    exists, a human must approve the frozen split, label diversity, sample size,
+    and M0 comparison contract before any model training can run.
+    """
+
+    counts = {
+        decision: max(0, int(decision_counts.get(decision, 0)))
+        for decision in (*sorted(POSITIVE_DECISIONS), HARD_NEGATIVE_DECISION)
+    }
+    total_labels = sum(counts.values())
+    positive_labels = sum(counts[decision] for decision in POSITIVE_DECISIONS)
+    decision_span_days = _review_window_days(first_decision_at, last_decision_at)
+    active_days = (
+        max(0, int(active_decision_days))
+        if active_decision_days is not None
+        else decision_span_days
+    )
+    corrected_hard_negatives = max(0, int(hard_negative_from_corrected))
+    deleted_feedback = max(0, int(soft_deleted_count))
+    methods = {
+        str(method): max(0, int(count))
+        for method, count in sorted((match_method_counts or {}).items())
+        if method
+    }
+
+    blockers: list[str] = []
+    if deleted_feedback:
+        blockers.append("SOFT_DELETED_FEEDBACK_PRESENT")
+    if total_labels == 0:
+        blockers.append("NO_HUMAN_LABELS")
+    else:
+        if positive_labels == 0:
+            blockers.append("NO_POSITIVE_HUMAN_LABELS")
+        if counts[HARD_NEGATIVE_DECISION] + corrected_hard_negatives == 0:
+            blockers.append("NO_HARD_NEGATIVE_LABELS")
+        if decision_span_days &lt; MIN_REVIEW_WINDOW_DAYS:
+            blockers.append("INSUFFICIENT_REVIEW_WINDOW")
+
+    status = "BLOCKED" if blockers else "REVIEW_REQUIRED"
+    return {
+        "gate_version": T5_GATE_VERSION,
+        "status": status,
+        "training_started": False,
+        "label_counts": {
+            "total": total_labels,
+            "confirmed": counts["user_confirmed"],
+            "corrected": counts["user_corrected"],
+            "rejected": counts[HARD_NEGATIVE_DECISION],
+        },
+        "negative_evidence": {
+            "rejected_labels": counts[HARD_NEGATIVE_DECISION],
+            "hard_negative_from_corrected": corrected_hard_negatives,
+            "total": counts[HARD_NEGATIVE_DECISION] + corrected_hard_negatives,
+        },
+        "feedback_integrity": {"soft_deleted_count": deleted_feedback},
+        "review_window": {
+            "first_decision_at": _iso_or_none(first_decision_at),
+            "last_decision_at": _iso_or_none(last_decision_at),
+            "decision_span_days": decision_span_days,
+            "active_days": active_days,
+            # Kept during the transition so existing diagnostic consumers do not break.
+            "observed_days": decision_span_days,
+            "minimum_required_days": MIN_REVIEW_WINDOW_DAYS,
+        },
+        "match_method_distribution": methods,
+        "blockers": blockers,
+        "manual_requirements": [
+            "Confirm label diversity beyond exact-code candidates.",
+            "Approve a frozen project-level split and label-volume threshold.",
+            "Compare any candidate model against M0 on the same frozen split.",
+            "Approve training explicitly; this report never starts training.",
+        ],
+    }
+
+
+def _review_window_days(
+    first_decision_at: datetime | None, last_decision_at: datetime | None
+) -&gt; int:
+    if first_decision_at is None or last_decision_at is None:
+        return 0
+    return max(0, (last_decision_at.date() - first_decision_at.date()).days + 1)
+
+
+def _iso_or_none(value: datetime | None) -&gt; str | None:
+    return value.isoformat() if value is not None else None</code></pre>
+        </div>
+      </section>
+
+      <section class="section ml-code-evidence" id="training-gate-test" aria-labelledby="training-gate-test-title">
+        <div class="section-heading ml-code-heading">
+          <p class="rule-label">검증 테스트</p>
+          <h2 id="training-gate-test-title">backend/tests/test_ml_training_gate.py</h2>
+          <p>레이블 부족, 검토 기간 부족, 피드백 삭제, 사람 승인 요구를 고정된 테스트로 확인합니다.</p>
+        </div>
+        <div class="ml-code-frame">
+          <pre><code>from __future__ import annotations
+
+from datetime import UTC, datetime, timedelta
+
+from app.ml.training_gate import assess_t5_readiness
+
+
+def test_training_gate_blocks_without_human_labels() -&gt; None:
+    report = assess_t5_readiness({}, first_decision_at=None, last_decision_at=None)
+
+    assert report["status"] == "BLOCKED"
+    assert report["training_started"] is False
+    assert report["label_counts"] == {
+        "total": 0,
+        "confirmed": 0,
+        "corrected": 0,
+        "rejected": 0,
+    }
+    assert report["blockers"] == ["NO_HUMAN_LABELS"]
+
+
+def test_training_gate_requires_positive_negative_and_review_window() -&gt; None:
+    now = datetime(2026, 7, 28, 9, tzinfo=UTC)
+    report = assess_t5_readiness(
+        {"user_rejected": 2},
+        first_decision_at=now,
+        last_decision_at=now + timedelta(days=1),
+    )
+
+    assert report["status"] == "BLOCKED"
+    assert report["blockers"] == [
+        "NO_POSITIVE_HUMAN_LABELS",
+        "INSUFFICIENT_REVIEW_WINDOW",
+    ]
+
+
+def test_training_gate_reports_corrected_hard_negatives_and_activity_shape() -&gt; None:
+    first = datetime(2026, 7, 1, 9, tzinfo=UTC)
+    report = assess_t5_readiness(
+        {"user_confirmed": 2, "user_corrected": 1},
+        first_decision_at=first,
+        last_decision_at=first + timedelta(days=13),
+        hard_negative_from_corrected=2,
+        active_decision_days=3,
+        match_method_counts={"exact_erp_code": 2, "normalized_signature": 1},
+    )
+
+    assert report["status"] == "REVIEW_REQUIRED"
+    assert report["negative_evidence"] == {
+        "rejected_labels": 0,
+        "hard_negative_from_corrected": 2,
+        "total": 2,
+    }
+    assert report["review_window"]["decision_span_days"] == 14
+    assert report["review_window"]["active_days"] == 3
+    assert report["match_method_distribution"] == {
+        "exact_erp_code": 2,
+        "normalized_signature": 1,
+    }
+
+
+def test_training_gate_blocks_when_feedback_has_been_soft_deleted() -&gt; None:
+    first = datetime(2026, 7, 1, 9, tzinfo=UTC)
+    report = assess_t5_readiness(
+        {"user_confirmed": 2, "user_rejected": 1},
+        first_decision_at=first,
+        last_decision_at=first + timedelta(days=13),
+        soft_deleted_count=1,
+    )
+
+    assert report["status"] == "BLOCKED"
+    assert report["feedback_integrity"]["soft_deleted_count"] == 1
+    assert report["blockers"] == ["SOFT_DELETED_FEEDBACK_PRESENT"]
+
+
+def test_training_gate_still_requires_manual_approval_after_basic_evidence() -&gt; None:
+    first = datetime(2026, 7, 1, 9, tzinfo=UTC)
+    report = assess_t5_readiness(
+        {"user_confirmed": 10, "user_corrected": 2, "user_rejected": 5},
+        first_decision_at=first,
+        last_decision_at=first + timedelta(days=13),
+    )
+
+    assert report["status"] == "REVIEW_REQUIRED"
+    assert report["training_started"] is False
+    assert report["review_window"]["observed_days"] == 14
+    assert report["blockers"] == []</code></pre>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

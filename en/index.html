@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A Prox construction operations case study covering data reconciliation, governed workflows, and ML readiness."
+    />
+    <title>Prox | Construction Operations Case Study</title>
+    <link rel="stylesheet" href="../style.css?v=20260810-en" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Back to the Prox case study home">PROX</a>
+      <nav class="site-nav" aria-label="Case study navigation">
+        <a href="#system">System</a>
+        <a href="#reconciliation">Reconciliation</a>
+        <a href="#process">Process</a>
+        <a href="#roadmap">Roadmap</a>
+        <a href="#ml">ML</a>
+        <a href="../">한국어</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <img
+          class="hero-image"
+          src="../assets/hero-construction-operations.png"
+          alt="A construction management desk with drawings and field-operations tools"
+        />
+        <div class="hero-content">
+          <p class="section-label">Construction Operations System</p>
+          <h1 id="hero-title">Prox</h1>
+          <p class="hero-copy">
+            A construction operations system that connects orders, execution, costs, and closeout data in one operating flow.
+          </p>
+          <dl class="hero-facts">
+            <div>
+              <dt>Problem</dt>
+              <dd>Mismatch between closeout margin and field results</dd>
+            </div>
+            <div>
+              <dt>Verified</dt>
+              <dd>Project subtotal gap: 0 to 0.19%p</dd>
+            </div>
+            <div>
+              <dt>Principle</dt>
+              <dd>Source preservation, reviewer approval, auditability</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <section class="section dossier" aria-labelledby="overview-title">
+        <div class="section-reading">
+          <h2 id="overview-title">Redesigning how field data reaches the numbers</h2>
+          <p>
+            Orders, material issues, construction costs, direct expenses, and payment fees originate in separate field workflows.
+            Prox connects them at the project and item level so the field management ledger and commercial closeout records
+            reference the same evidence.
+          </p>
+          <div class="principle-list" role="list" aria-label="Prox design principles">
+            <article role="listitem">
+              <span>01</span>
+              <h3>Preserve operational data</h3>
+              <p>Existing business fields and source spreadsheets remain intact. Normalization and corrections are retained as lineage.</p>
+            </article>
+            <article role="listitem">
+              <span>02</span>
+              <h3>Review with authority</h3>
+              <p>Edits and matching decisions pass through role-based permissions, with the reviewer and timestamp retained.</p>
+            </article>
+            <article role="listitem">
+              <span>03</span>
+              <h3>Reconcile against the field</h3>
+              <p>Margins are calculated against execution costs that can be traced back to field evidence.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section report-signals" id="report" aria-labelledby="report-signals-title">
+        <div class="report-signals-intro">
+          <div>
+            <p class="rule-label">Manufacturing Data Advancement Report, Aug 2026</p>
+            <h2 id="report-signals-title">The priority is connecting materials, unit prices, and logistics actuals, not adding features.</h2>
+          </div>
+          <p>
+            The report identifies direct material and unit-price links, together with post-issue logistics actuals, as the larger
+            bottleneck. Prox treats this gap as an operating layer to be verified between cost formulas and field records.
+          </p>
+        </div>
+        <dl class="report-metric-grid">
+          <div><dt>80.0%</dt><dd>Project linkage between orders and work instructions</dd></div>
+          <div><dt>0.7%</dt><dd>Direct linkage between work materials and unit-price codes</dd></div>
+          <div><dt>0 / 13</dt><dd>Core logistics-actual fields found in the analytical source</dd></div>
+        </dl>
+        <p class="report-source-note">
+          These figures are diagnostic baselines from the report, not Prox product-performance claims. The report also identified
+          1,821 formula errors and 793 duplicated work-instruction key groups. Company names and non-public financial values are excluded.
+        </p>
+      </section>
+
+      <section class="section system-map" id="system" aria-labelledby="system-title">
+        <div class="section-heading"><h2 id="system-title">A technical structure centered on operations</h2></div>
+        <div class="system-flow" aria-label="Prox system data flow">
+          <div class="flow-node"><strong>Input</strong><span>Orders, field data, spreadsheets</span></div>
+          <div class="flow-link" aria-hidden="true"></div>
+          <div class="flow-node flow-node-primary"><strong>Prox API</strong><span>Business rules and permissions</span></div>
+          <div class="flow-link" aria-hidden="true"></div>
+          <div class="flow-node"><strong>Operating data</strong><span>PostgreSQL, Alembic</span></div>
+          <div class="flow-link" aria-hidden="true"></div>
+          <div class="flow-node"><strong>Result</strong><span>Dashboard, closeout spreadsheet</span></div>
+        </div>
+        <div class="technology-grid">
+          <p><span>Client</span>React, TypeScript, TanStack Query, Zustand</p>
+          <p><span>Server</span>FastAPI, SQLAlchemy 2.0, Pydantic Settings</p>
+          <p><span>Data</span>PostgreSQL, Alembic, integer KRW amount handling</p>
+          <p><span>Delivery</span>Docker Compose, pytest, ruff, Black</p>
+        </div>
+      </section>
+
+      <section class="section product-evidence" aria-labelledby="product-evidence-title">
+        <div class="product-evidence-intro">
+          <div class="product-evidence-copy">
+            <p class="rule-label">Product evidence</p>
+            <h2 id="product-evidence-title">Beyond sign-in, the complete field-operations flow is here.</h2>
+            <p>
+              Prox brings alerts, schedules, orders, construction and other costs, and analytical data into one work flow.
+              The screens below are captured from the product, with data cells redacted for public release.
+            </p>
+          </div>
+          <p class="product-evidence-note">
+            The menu structure, table columns, search, and processing flow are from the actual product. Customer names, staff names,
+            contract amounts, and other operating data are not shown in this public portfolio.
+          </p>
+        </div>
+        <div class="product-screen-grid">
+          <figure class="product-screen product-screen-wide">
+            <a class="product-screen-link" href="../assets/prox-home-redacted.png" target="_blank" rel="noopener" aria-label="Open the Prox home screen at full size">
+              <div class="product-screen-frame"><img src="../assets/prox-home-redacted.png" alt="Redacted Prox home screen" /></div>
+            </a>
+            <figcaption>Home. Alerts, messages, notices, schedules, and assigned projects are visible in one workspace.</figcaption>
+          </figure>
+          <figure class="product-screen">
+            <a class="product-screen-link" href="../assets/prox-orders-redacted.png" target="_blank" rel="noopener" aria-label="Open the Prox order-status screen at full size">
+              <div class="product-screen-frame"><img src="../assets/prox-orders-redacted.png" alt="Redacted Prox order-status screen" /></div>
+            </a>
+            <figcaption>Orders. Search criteria, lists, and item details work together to trace each order unit.</figcaption>
+          </figure>
+          <figure class="product-screen">
+            <a class="product-screen-link" href="../assets/prox-construction-redacted.png" target="_blank" rel="noopener" aria-label="Open the Prox construction and other-cost screen at full size">
+              <div class="product-screen-frame"><img src="../assets/prox-construction-redacted.png" alt="Redacted construction and other-cost screen" /></div>
+            </a>
+            <figcaption>Construction and other costs. Filtering, detail entry, and completion processing stay in one operating screen.</figcaption>
+          </figure>
+          <figure class="product-screen">
+            <a class="product-screen-link" href="../assets/prox-analytics-redacted.png" target="_blank" rel="noopener" aria-label="Open the Prox analytics screen at full size">
+              <div class="product-screen-frame"><img src="../assets/prox-analytics-redacted.png" alt="Redacted Prox analytics screen" /></div>
+            </a>
+            <figcaption>Analytics. Margin, receivables, and budget-overrun risks are reviewed by period.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section reconciliation" id="reconciliation" aria-labelledby="reconciliation-title">
+        <div class="reconciliation-intro">
+          <h2 id="reconciliation-title">Finding margin differences in the data flow, not only in the formula</h2>
+          <p>
+            We compared the execution margin in commercial closeout records with the field ledger margin. The difference came from
+            material issues that recorded quantity but were treated as zero execution-material cost in the closeout spreadsheet.
+          </p>
+        </div>
+        <div class="evidence-grid">
+          <article class="evidence-fact"><p>Comparison scope</p><strong>4</strong><span>active projects</span></article>
+          <article class="evidence-fact"><p>Gap before correction</p><strong>26.01 to 39.51%p</strong><span>closeout record versus field ledger</span></article>
+          <article class="evidence-fact evidence-fact-positive"><p>Gap after correction</p><strong>0 to 0.19%p</strong><span>project subtotal basis</span></article>
+        </div>
+        <div class="reconciliation-rule">
+          <p class="rule-label">Spreadsheet calculation principle</p>
+          <p>
+            When an item has execution history, its execution-material cost references the approval-material cost by default.
+            Users can still adjust the value in Excel, and the execution margin reflects that adjustment immediately.
+          </p>
+        </div>
+      </section>
+
+      <section class="section process-ledger" id="process" aria-labelledby="process-title">
+        <div class="process-intro">
+          <p class="rule-label">Work process</p>
+          <h2 id="process-title">We did not stop at correcting a number. We made the next closeout reproduce it.</h2>
+          <p>
+            Prox work does more than reflect a field request in a screen. It identifies why data differs, preserves source records,
+            and retains calculation rules and verification evidence so the outcome is repeatable at the next closeout.
+          </p>
+        </div>
+        <ol class="process-log" aria-label="Prox margin-reconciliation work record">
+          <li>
+            <span>Discover</span>
+            <div class="process-detail"><h3>Material issues existed, but execution-material cost was calculated as zero.</h3><p>Issued-product quantities were not sufficiently reflected in the closeout spreadsheet formula, which understated execution margin.</p></div>
+            <p class="process-proof">Product issues, the field ledger, and commercial closeout records were compared on the same project basis.</p>
+          </li>
+          <li>
+            <span>Compare</span>
+            <div class="process-detail"><h3>We separated the margin gap between the field ledger and closeout record by project.</h3><p>Across four active projects, the pre-correction gap was 26.01 to 39.51 percentage points.</p></div>
+            <p class="process-proof">Material, construction, direct-expense, and fee calculation paths were reviewed separately.</p>
+          </li>
+          <li>
+            <span>Fix rule</span>
+            <div class="process-detail"><h3>Items with execution history now reference approval-material cost by default.</h3><p>Field users keep their existing Excel adjustment workflow, and adjusted values flow directly into the execution-margin formula.</p></div>
+            <p class="process-proof">The business columns stayed unchanged. The closeout reference rule was strengthened instead.</p>
+          </li>
+          <li>
+            <span>Recheck</span>
+            <div class="process-detail"><h3>The project-subtotal gap fell to 0 to 0.19 percentage points after correction.</h3><p>The result was recalculated using the same cost basis as the field ledger without overwriting source issue records.</p></div>
+            <p class="process-proof">Formula changes and original inputs remain distinct, allowing both result and evidence to be traced.</p>
+          </li>
+          <li>
+            <span>Prepare</span>
+            <div class="process-detail"><h3>Corrections and review history become evidence for future matching and anomaly detection.</h3><p>Normalization, candidate suggestions, reviewer confirmation, correction, rejection, and feedback retention are separated so ML does not replace business judgment.</p></div>
+            <p class="process-proof">Source values, derived values, and approval decisions are retained separately. Financial data never changes without human approval.</p>
+          </li>
+        </ol>
+        <p class="process-closure">The point is not a one-time numeric correction. It is leaving an operating rule that can discover, compare, and verify the same class of error when it returns.</p>
+      </section>
+
+      <section class="section roadmap" id="roadmap" aria-labelledby="roadmap-title">
+        <div class="roadmap-intro">
+          <p class="rule-label">Prox advancement proposal</p>
+          <h2 id="roadmap-title">The efficient order is measurement, standards, actuals, then automation.</h2>
+          <p>Rather than replacing ERP or MES all at once, Prox recommends raising the reliability of current operating data in stages. When a gate is not proven, the next investment waits.</p>
+        </div>
+        <ol class="roadmap-rail" aria-label="Prox advancement roadmap">
+          <li><span>4 weeks</span><h3>Measure</h3><p>Establish a baseline for handling time, approval delay, rework, data-entry time, and record-completion rate in one operating group.</p></li>
+          <li><span>6 months</span><h3>Standardize</h3><p>Verify and approve project, material, specification, unit, unit-price effective date, and final revision standards.</p></li>
+          <li><span>12 months</span><h3>Actuals</h3><p>Retain issue, return, field balance, and disposal events so actual cost and standard cost differences can be explained.</p></li>
+          <li><span>24 months</span><h3>Decide on automation</h3><p>Expand ML assistance for recommendations and anomaly detection only after approved, high-grade data is accumulated.</p></li>
+        </ol>
+        <div class="direction-list" aria-label="Prox role and extension boundaries">
+          <article><span>Prox today</span><h3>Project-level reconciliation and auditability</h3><p>Source preservation, legal-entity and project identification, closeout margin reconciliation, and review history retain the basis of every number.</p></article>
+          <article><span>After Gates A and B</span><h3>Minimum field actuals and master-data verification</h3><p>Event records from material issue through return, balance, and disposal connect actual cost formulas to closeout and reduce information gaps.</p></article>
+          <article><span>After Gate C</span><h3>ML assistance using approved data</h3><p>Candidate matching and anomaly signals support reviewers. They do not automatically alter or approve operational or financial data.</p></article>
+        </div>
+        <p class="roadmap-decision">The recommended model keeps current AX, IT, and ML owners accountable for structure, separates drawing, BOM, unit-price, and cost verification first, and evaluates DataOps and MES operating roles at the six-month gate. Staffing and budget are re-estimated from the four-week measurement result.</p>
+      </section>
+
+      <section class="section ml-section" id="ml" aria-labelledby="ml-title">
+        <div class="section-heading ml-heading">
+          <h2 id="ml-title">Before automatic approval, build evidence that can support learning.</h2>
+          <p>Prox establishes data lineage and reviewer decisions before operating a model. Automated learning, automated scoring, and automated approval are outside this stage.</p>
+        </div>
+        <ol class="ml-rail" aria-label="Machine-learning readiness data flow">
+          <li><span>M1</span><h3>Source staging</h3><p>Imported files and source references are retained as unchanged evidence.</p></li>
+          <li><span>M2</span><h3>Normalization</h3><p>Text and units are structured with rule versions and transformation history.</p></li>
+          <li><span>M3</span><h3>Candidate matching</h3><p>Deterministic candidates and reasons are provided without automatically changing business data.</p></li>
+          <li><span>M4</span><h3>Quality isolation</h3><p>Untrustworthy source rows are separated from the normal processing flow.</p></li>
+          <li><span>M5</span><h3>Feedback readiness</h3><p>Confirmation, correction, and rejection decisions accumulate with immutable feature snapshots.</p></li>
+        </ol>
+        <div class="ml-boundary">
+          <p><strong>Reviewer Gate</strong> Actual item identification and business changes happen only after a reviewer decision.</p>
+          <p><strong>Audit Trail</strong> Candidates, evidence, review history, and feedback labels remain separately traceable.</p>
+        </div>
+      </section>
+
+      <section class="section ml-code-evidence" aria-labelledby="ml-code-title">
+        <div class="section-heading ml-code-heading">
+          <p class="rule-label">Code evidence</p>
+          <h2 id="ml-code-title">The code records conditions that must stop before it starts recommendations.</h2>
+          <p>The actual <code>training_gate.py</code> checks human-review labels and the review window. When evidence is insufficient, it always records that training has not started. This report does not launch a model.</p>
+        </div>
+        <div class="ml-code-layout">
+          <figure class="ml-code-figure">
+            <div class="ml-code-frame">
+              <div class="ml-source-bar"><span>backend/app/ml/training_gate.py</span><a href="../assets/ml-code-source.html#training-gate" target="_blank" rel="noopener">Full source</a></div>
+              <pre aria-label="Excerpt from the Prox machine-learning training safety gate"><code>"""Read-only safety gate for future candidate-ranking model training."""
+
+T5_GATE_VERSION = "t5-readiness-v1"
+MIN_REVIEW_WINDOW_DAYS = 14
+
+POSITIVE_DECISIONS = frozenset({"user_confirmed", "user_corrected"})
+HARD_NEGATIVE_DECISION = "user_rejected"
+
+def assess_t5_readiness(...):
+    ...
+    status = "BLOCKED" if blockers else "REVIEW_REQUIRED"
+    return {
+        "gate_version": T5_GATE_VERSION,
+        "status": status,
+        "training_started": False,
+        "blockers": blockers,
+        "manual_requirements": [
+            "Approve training explicitly; this report never starts training.",
+        ],
+    }</code></pre>
+            </div>
+            <figcaption>Excerpt from the actual source. The full source and verification test can be opened through the links.</figcaption>
+          </figure>
+          <div class="ml-code-notes">
+            <dl>
+              <div><dt>Human labels</dt><dd>Confirmation, correction, and rejection are retained as distinct evidence.</dd></div>
+              <div><dt>14-day window</dt><dd>A short period of coincidental results cannot open the next stage.</dd></div>
+              <div><dt>Block first</dt><dd>Deleted feedback or insufficient positive and negative evidence blocks progress immediately.</dd></div>
+              <div><dt>Final approval</dt><dd>Training does not start without explicit human approval, even when baseline conditions are met.</dd></div>
+            </dl>
+            <a class="ml-test-link" href="../assets/ml-code-source.html#training-gate-test" target="_blank" rel="noopener">Verification test</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section capability-table" aria-labelledby="capability-title">
+        <div class="section-heading"><p class="rule-label">Responsibilities and deliverables</p><h2 id="capability-title">What was built and what was left for the next team</h2></div>
+        <div class="table-wrap" role="region" aria-label="Prox responsibilities and deliverables" tabindex="0">
+          <table>
+            <thead><tr><th scope="col">Responsibility</th><th scope="col">Work performed</th><th scope="col">Retained deliverable</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Operating-data reconciliation</th><td>Compared the field ledger, product issues, and commercial closeout records by project.</td><td>Cause of the margin gap and a re-verified project-subtotal result.</td></tr>
+              <tr><th scope="row">Calculation rule</th><td>Applied an execution-material cost reference rule for items with execution history to closeout output.</td><td>Margin calculations that preserve Excel adjustment authority while using the same basis.</td></tr>
+              <tr><th scope="row">Structure and verification</th><td>Kept router, schema, and service boundaries while managing changes through Alembic and tests.</td><td>A structure that preserves source business columns and supports retained lineage and regression checks.</td></tr>
+              <tr><th scope="row">ML data readiness</th><td>Separated source preservation, candidate matching, quality isolation, and confirmation, correction, and rejection feedback.</td><td>Auditable learning evidence for later recommendations and anomaly signals, without automated approval.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>PROX Construction Operations Case Study</p>
+      <p>Public summary. Customer names, contract amounts, and personal identifiers are not included.</p>
+    </footer>
+  </body>
+</html>
