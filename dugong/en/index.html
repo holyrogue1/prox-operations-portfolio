@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Dugong AI Coach is a JavaFX desktop system for AI work-use diagnosis, prompt improvement, and reviewer-governed learning readiness."
+    />
+    <title>DUGONG | AI Coach Case Study</title>
+    <link rel="stylesheet" href="../../style.css?v=20260810-dugong-en" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Dugong AI Coach case study home">DUGONG</a>
+      <nav class="site-nav" aria-label="Dugong case study navigation">
+        <a href="#overview">Overview</a>
+        <a href="#system">System</a>
+        <a href="#governance">Governance</a>
+        <a href="#readiness">ML</a>
+        <a href="../../en/">PROX</a>
+        <a href="../">한국어</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <img
+          class="hero-image"
+          src="../../assets/dugong-ai-coach-landing.png"
+          alt="Dugong AI Coach start screen with prompt, report, and coaching flow"
+        />
+        <div class="hero-content">
+          <p class="section-label">AI Work-Usage Diagnosis System</p>
+          <h1 id="hero-title">DUGONG<br />AI Coach</h1>
+          <p class="hero-copy">
+            A desktop system that diagnoses AI work use, improves prompts, and prepares team learning evidence under human review.
+          </p>
+          <dl class="hero-facts">
+            <div>
+              <dt>Active UI</dt>
+              <dd>JavaFX desktop application</dd>
+            </div>
+            <div>
+              <dt>Privacy boundary</dt>
+              <dd>Raw prompts stay local-first</dd>
+            </div>
+            <div>
+              <dt>ML principle</dt>
+              <dd>Reviewer-confirmed labels first</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <section class="section dossier" id="overview" aria-labelledby="overview-title">
+        <div class="section-reading">
+          <p class="rule-label">PRODUCT INTENT</p>
+          <h2 id="overview-title">A coach for safer work improvement, not a surveillance tool for AI use.</h2>
+          <p>
+            Dugong records work-use cases across AI tools such as ChatGPT, Claude, Gemini, and Copilot. It analyzes task type, purpose,
+            prompting pattern, failure cause, security risk, and outcome signals. The output is retained as evidence for better prompts and
+            team learning topics, not as a score for individual evaluation.
+          </p>
+          <div class="principle-list" role="list" aria-label="Dugong operating principles">
+            <article role="listitem">
+              <span>01</span>
+              <h3>Local-first protection</h3>
+              <p>Raw prompts, chat history, result text, and direct identifiers are excluded from central anonymous telemetry.</p>
+            </article>
+            <article role="listitem">
+              <span>02</span>
+              <h3>Diagnosis separated from display</h3>
+              <p>JavaFX collects and presents; Python owns analysis, security judgement, persistence, export, and audit contracts.</p>
+            </article>
+            <article role="listitem">
+              <span>03</span>
+              <h3>Reviewed learning evidence</h3>
+              <p>AI-suggested values are not learning labels. User-confirmed, corrected, or human-reviewed values are the valid candidates.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section product-evidence" aria-labelledby="product-title">
+        <div class="product-evidence-intro">
+          <div class="product-evidence-copy">
+            <p class="rule-label">PRODUCT EVIDENCE</p>
+            <h2 id="product-title">Prompt capture, diagnosis, reporting, and coaching in one work flow.</h2>
+            <p>
+              The active product interface is a JavaFX desktop application. Its start screen frames the entry flow from recording a case,
+              through diagnosis, to an improvement direction and a report.
+            </p>
+          </div>
+          <p class="product-evidence-note">
+            The public screen shows only the product start experience and feature flow. No employee case, raw prompt, organization, or identifier is included.
+          </p>
+        </div>
+        <div class="product-screen-grid">
+          <figure class="product-screen product-screen-wide">
+            <a class="product-screen-link" href="../../assets/dugong-ai-coach-landing.png" target="_blank" rel="noopener" aria-label="Open the Dugong AI Coach start screen at full size">
+              <div class="product-screen-frame">
+                <img src="../../assets/dugong-ai-coach-landing.png" alt="Dugong AI Coach start screen" />
+              </div>
+            </a>
+            <figcaption>The actual start screen presents the roles of prompt recording, AI diagnosis, reporting, and coaching in one place.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section system-map" id="system" aria-labelledby="system-title">
+        <div class="section-heading">
+          <p class="rule-label">OPERATING ARCHITECTURE</p>
+          <h2 id="system-title">The desktop collects, Python decides, and quality gates hold the line before learning.</h2>
+        </div>
+        <div class="system-flow" aria-label="Dugong system flow">
+          <div class="flow-node">
+            <strong>JavaFX</strong>
+            <span>Case input, review, result display</span>
+          </div>
+          <div class="flow-link" aria-hidden="true"></div>
+          <div class="flow-node flow-node-primary">
+            <strong>Python CLI</strong>
+            <span>Contract validation and service boundary</span>
+          </div>
+          <div class="flow-link" aria-hidden="true"></div>
+          <div class="flow-node">
+            <strong>Analysis Core</strong>
+            <span>Analysis, recommendation, quality, security</span>
+          </div>
+          <div class="flow-link" aria-hidden="true"></div>
+          <div class="flow-node">
+            <strong>Local Evidence</strong>
+            <span>SQLite, export, audit, and gates</span>
+          </div>
+        </div>
+        <div class="technology-grid">
+          <p><span>Desktop</span>JavaFX 21, JDK 17</p>
+          <p><span>Core</span>Python, pipeline, analyzer, recommender</p>
+          <p><span>Trust</span>Security guard, audit log, label provenance</p>
+          <p><span>Delivery</span>CLI JSON contract, pytest, CSV/JSONL export</p>
+        </div>
+      </section>
+
+      <section class="section process-ledger" id="governance" aria-labelledby="governance-title">
+        <div class="process-intro">
+          <p class="rule-label">GOVERNED LEARNING</p>
+          <h2 id="governance-title">Raw-text blocking and human review come before any learning dataset.</h2>
+          <p>
+            Dugong puts the user's control over the data path first. Anonymous telemetry and local learning data are separate, and high-risk
+            cases preserve an expert-review requirement.
+          </p>
+        </div>
+        <ol class="process-log" aria-label="Dugong data governance stages">
+          <li>
+            <span>Raw-text protection</span>
+            <div class="process-detail">
+              <h3>Sensitive prompts and results do not enter central telemetry.</h3>
+              <p>Only usage patterns and safe metrics remain in central telemetry. Raw text and direct identifiers are governed separately.</p>
+            </div>
+            <p class="process-proof">Telemetry policy and payload-guard tests verify the outbound boundary.</p>
+          </li>
+          <li>
+            <span>Case diagnosis</span>
+            <div class="process-detail">
+              <h3>Task type, purpose, prompting pattern, failure cause, and risk return through a defined contract.</h3>
+              <p>The UI does not calculate the analysis directly. Python services and a CLI JSON contract return a consistent result shape.</p>
+            </div>
+            <p class="process-proof">Separating UI from the analysis core contains the regression surface.</p>
+          </li>
+          <li>
+            <span>Human feedback</span>
+            <div class="process-detail">
+              <h3>User confirmation and correction take precedence over an automated diagnosis.</h3>
+              <p>Source and confidence stay with confirmed, corrected, and reviewed labels so later decisions can be audited.</p>
+            </div>
+            <p class="process-proof">AI-suggested values cannot be promoted directly to confirmed training labels.</p>
+          </li>
+          <li>
+            <span>Quality gate</span>
+            <div class="process-detail">
+              <h3>Incomplete or risky rows are excluded from learning export and retained with their reason.</h3>
+              <p>Label source, confidence, redaction, required context, and post-use leakage are checked before CSV and JSONL preparation.</p>
+            </div>
+            <p class="process-proof">Rejected rows are evidence for improving collection quality, not silent data loss.</p>
+          </li>
+        </ol>
+      </section>
+
+      <section class="section reconciliation" aria-labelledby="quality-title">
+        <div class="reconciliation-intro">
+          <p class="rule-label">VERIFICATION</p>
+          <h2 id="quality-title">The test focus is not feature count. It is whether contracts and trust boundaries keep holding.</h2>
+          <p>
+            Coverage includes analysis, recommendation, pipeline, database migration, CLI JSON envelopes, feedback labels, telemetry raw-text blocking,
+            and the data-quality gate. A local source check on 2026-08-10 completed 488 Python tests successfully.
+          </p>
+        </div>
+        <div class="evidence-grid">
+          <article class="evidence-fact evidence-fact-positive">
+            <p>Local tests</p>
+            <strong>488</strong>
+            <span>pytest passed on 2026-08-10</span>
+          </article>
+          <article class="evidence-fact">
+            <p>Core contract</p>
+            <strong>CLI JSON</strong>
+            <span>Stable connection between JavaFX and Python</span>
+          </article>
+          <article class="evidence-fact">
+            <p>Security boundary</p>
+            <strong>Raw-text block</strong>
+            <span>Original text excluded from anonymous telemetry</span>
+          </article>
+        </div>
+      </section>
+
+      <section class="section ml-section" id="readiness" aria-labelledby="readiness-title">
+        <div class="ml-heading">
+          <p class="rule-label">ML READINESS</p>
+          <h2 id="readiness-title">Model training is not a completed feature. It opens only when its gates are satisfied.</h2>
+          <p>
+            Rule-based diagnosis remains the valid baseline. Baseline models, hyperparameter optimization, and model promotion are considered only
+            after enough human-confirmed labels, class balance, group diversity, no post-use leakage, and high-risk review are verified.
+          </p>
+        </div>
+        <ol class="ml-rail" aria-label="Dugong ML readiness stages">
+          <li>
+            <span>01</span>
+            <h3>Record</h3>
+            <p>Structure AI work-use cases and outcome signals.</p>
+          </li>
+          <li>
+            <span>02</span>
+            <h3>Confirm</h3>
+            <p>Retain user and reviewer feedback as label provenance.</p>
+          </li>
+          <li>
+            <span>03</span>
+            <h3>Curate</h3>
+            <p>Limit learning candidates through quality gates and redaction.</p>
+          </li>
+          <li>
+            <span>04</span>
+            <h3>Baseline</h3>
+            <p>Prepare a comparison against the rule-based reference.</p>
+          </li>
+          <li>
+            <span>05</span>
+            <h3>Promote</h3>
+            <p>Discuss a reviewed model transition only after the conditions hold.</p>
+          </li>
+        </ol>
+        <div class="ml-boundary">
+          <p><strong>Implemented now</strong>Diagnosis, recommendation, security judgement, feedback, export, audit, and workflow gates remain operating evidence.</p>
+          <p><strong>Intentionally held back</strong>Automatic training, automatic approval, individual scoring, central raw-text collection, and financial-data mutation are out of scope.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>DUGONG AI Coach Case Study</p>
+      <p>Built for work improvement rather than employee surveillance, reviewable evidence rather than raw-text collection, and safe next steps rather than automatic approval.</p>
+    </footer>
+  </body>
+</html>

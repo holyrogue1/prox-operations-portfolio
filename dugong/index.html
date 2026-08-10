@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="듀공 AI Coach는 직원의 AI 업무 활용을 진단하고 프롬프트 개선과 검토 기반 학습 준비를 돕는 JavaFX 데스크톱 시스템입니다."
+    />
+    <title>DUGONG | AI Coach Case Study</title>
+    <link rel="stylesheet" href="../style.css?v=20260810-dugong" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="듀공 AI Coach 사례 페이지 처음으로">DUGONG</a>
+      <nav class="site-nav" aria-label="듀공 사례 페이지 탐색">
+        <a href="#overview">개요</a>
+        <a href="#system">구조</a>
+        <a href="#governance">보안</a>
+        <a href="#readiness">ML</a>
+        <a href="../">PROX</a>
+        <a href="en/">EN</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <img
+          class="hero-image"
+          src="../assets/dugong-ai-coach-landing.png"
+          alt="듀공 AI Coach의 시작 화면과 프롬프트, 리포트, 코칭 흐름"
+        />
+        <div class="hero-content">
+          <p class="section-label">AI Work-Usage Diagnosis System</p>
+          <h1 id="hero-title">DUGONG<br />AI Coach</h1>
+          <p class="hero-copy">
+            직원의 AI 업무 활용을 진단하고, 프롬프트 개선과 팀 단위의 학습 준비를 사람 검토 기준으로 다루는 데스크톱 시스템
+          </p>
+          <dl class="hero-facts">
+            <div>
+              <dt>활성 UI</dt>
+              <dd>JavaFX 데스크톱</dd>
+            </div>
+            <div>
+              <dt>보안 경계</dt>
+              <dd>원문 프롬프트는 로컬 우선</dd>
+            </div>
+            <div>
+              <dt>ML 원칙</dt>
+              <dd>사람 확인 라벨 이후에만 검토</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <section class="section dossier" id="overview" aria-labelledby="overview-title">
+        <div class="section-reading">
+          <p class="rule-label">PRODUCT INTENT</p>
+          <h2 id="overview-title">AI 사용을 감시하는 도구가 아니라, 안전한 업무 개선의 근거를 쌓는 코치입니다.</h2>
+          <p>
+            듀공은 ChatGPT, Claude, Gemini, Copilot 같은 AI 도구의 업무 사용 사례를 기록하고, 업무 유형과 목적, 프롬프트 방식, 실패 원인,
+            보안 위험, 결과 신호를 분석합니다. 분석 결과는 개인 평가를 위한 점수가 아니라, 더 나은 프롬프트와 교육 주제를 제안하기 위한
+            운영 근거로 남깁니다.
+          </p>
+          <div class="principle-list" role="list" aria-label="듀공의 운영 원칙">
+            <article role="listitem">
+              <span>01</span>
+              <h3>로컬 우선 보호</h3>
+              <p>원문 프롬프트, 대화 이력, 결과 텍스트와 직접 식별 정보는 중앙 익명 통계 전송에서 제외합니다.</p>
+            </article>
+            <article role="listitem">
+              <span>02</span>
+              <h3>진단과 결정의 분리</h3>
+              <p>JavaFX는 입력과 표시를 맡고, 분석, 보안 판단, 저장, 내보내기와 감사는 Python 계약 경계에서 처리합니다.</p>
+            </article>
+            <article role="listitem">
+              <span>03</span>
+              <h3>검토된 학습 근거</h3>
+              <p>AI가 제안한 값은 학습 라벨이 아니며, 사용자 확인, 사용자 수정, 사람 검토 값만 확정 라벨 후보가 됩니다.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section product-evidence" aria-labelledby="product-title">
+        <div class="product-evidence-intro">
+          <div class="product-evidence-copy">
+            <p class="rule-label">PRODUCT EVIDENCE</p>
+            <h2 id="product-title">프롬프트, 진단, 리포트, 코칭을 하나의 업무 흐름으로 연결합니다.</h2>
+            <p>
+              활성 제품 UI는 JavaFX 데스크톱 앱입니다. 시작 화면은 사용자가 사례를 기록하고, 진단 결과를 확인하며, 개선 방향과 리포트로
+              이어지는 제품의 진입 흐름을 보여줍니다.
+            </p>
+          </div>
+          <p class="product-evidence-note">
+            공개 화면은 제품의 시작 경험과 기능 흐름만 보여줍니다. 실제 직원 사례, 프롬프트 원문, 조직명과 개인 식별 정보는 포함하지 않습니다.
+          </p>
+        </div>
+        <div class="product-screen-grid">
+          <figure class="product-screen product-screen-wide">
+            <a class="product-screen-link" href="../assets/dugong-ai-coach-landing.png" target="_blank" rel="noopener" aria-label="듀공 AI Coach 시작 화면 크게 보기">
+              <div class="product-screen-frame">
+                <img src="../assets/dugong-ai-coach-landing.png" alt="듀공 AI Coach 시작 화면" />
+              </div>
+            </a>
+            <figcaption>실제 시작 화면. 프롬프트 기록, AI 진단, 리포트, 코칭으로 이어지는 역할을 한 화면에서 안내합니다.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section system-map" id="system" aria-labelledby="system-title">
+        <div class="section-heading">
+          <p class="rule-label">OPERATING ARCHITECTURE</p>
+          <h2 id="system-title">화면은 수집하고, Python은 판단하며, 학습 전에는 품질 문턱을 통과시킵니다.</h2>
+        </div>
+        <div class="system-flow" aria-label="듀공의 시스템 흐름">
+          <div class="flow-node">
+            <strong>JavaFX</strong>
+            <span>사례 입력, 검토, 결과 표시</span>
+          </div>
+          <div class="flow-link" aria-hidden="true"></div>
+          <div class="flow-node flow-node-primary">
+            <strong>Python CLI</strong>
+            <span>계약 검증과 서비스 경계</span>
+          </div>
+          <div class="flow-link" aria-hidden="true"></div>
+          <div class="flow-node">
+            <strong>Analysis Core</strong>
+            <span>분석, 추천, 품질, 보안</span>
+          </div>
+          <div class="flow-link" aria-hidden="true"></div>
+          <div class="flow-node">
+            <strong>Local Evidence</strong>
+            <span>SQLite, export, audit, gate</span>
+          </div>
+        </div>
+        <div class="technology-grid">
+          <p><span>Desktop</span>JavaFX 21, JDK 17</p>
+          <p><span>Core</span>Python, pipeline, analyzer, recommender</p>
+          <p><span>Trust</span>security guard, audit log, label provenance</p>
+          <p><span>Delivery</span>CLI JSON 계약, pytest, CSV/JSONL export</p>
+        </div>
+      </section>
+
+      <section class="section process-ledger" id="governance" aria-labelledby="governance-title">
+        <div class="process-intro">
+          <p class="rule-label">GOVERNED LEARNING</p>
+          <h2 id="governance-title">학습 데이터가 되기 전, 원문 차단과 사람 검토를 먼저 고정합니다.</h2>
+          <p>
+            듀공의 데이터 흐름은 분석 편의보다 사용자의 통제권을 우선합니다. 익명 telemetry와 로컬 학습 데이터는 분리하고,
+            보안 위험 사례는 전문가 검토 조건을 유지합니다.
+          </p>
+        </div>
+        <ol class="process-log" aria-label="듀공의 데이터 거버넌스 단계">
+          <li>
+            <span>원문 보호</span>
+            <div class="process-detail">
+              <h3>민감 프롬프트와 결과 원문은 중앙 통계로 보내지 않습니다.</h3>
+              <p>중앙 telemetry에는 업무 패턴과 지표만 남기고, 원문 텍스트와 직접 식별 정보는 차단 정책으로 분리합니다.</p>
+            </div>
+            <p class="process-proof">telemetry 정책과 payload guard 테스트로 전송 경계를 검증합니다.</p>
+          </li>
+          <li>
+            <span>사례 진단</span>
+            <div class="process-detail">
+              <h3>업무 유형, 목적, 프롬프트 방식, 실패 원인과 보안 위험을 계약된 결과로 반환합니다.</h3>
+              <p>분석 결과는 UI가 직접 계산하지 않으며, Python 서비스와 CLI JSON 계약을 통해 일관된 형태로 표시됩니다.</p>
+            </div>
+            <p class="process-proof">UI와 분석 코어의 책임을 분리해 회귀 범위를 줄입니다.</p>
+          </li>
+          <li>
+            <span>사람 피드백</span>
+            <div class="process-detail">
+              <h3>사용자의 확인과 수정이 자동 진단보다 우선합니다.</h3>
+              <p>확인, 수정, 검토 라벨의 출처와 신뢰도를 보존해 다음 개선 판단에서 근거를 다시 확인할 수 있습니다.</p>
+            </div>
+            <p class="process-proof">AI 제안 값은 확정 학습 라벨로 승격되지 않습니다.</p>
+          </li>
+          <li>
+            <span>품질 게이트</span>
+            <div class="process-detail">
+              <h3>불완전하거나 위험한 행은 학습 내보내기에서 제외하고 사유를 남깁니다.</h3>
+              <p>label source, confidence, redaction, 필수 맥락과 사후 누수 여부를 검사해 CSV와 JSONL을 준비합니다.</p>
+            </div>
+            <p class="process-proof">rejected rows는 삭제가 아니라 수집 품질을 개선하기 위한 진단 근거입니다.</p>
+          </li>
+        </ol>
+      </section>
+
+      <section class="section reconciliation" aria-labelledby="quality-title">
+        <div class="reconciliation-intro">
+          <p class="rule-label">VERIFICATION</p>
+          <h2 id="quality-title">기능 수보다, 계약과 보안 경계가 회귀하지 않는지를 확인했습니다.</h2>
+          <p>
+            분석, 추천, 파이프라인, DB migration, CLI JSON envelope, 피드백 라벨, telemetry 원문 차단과 데이터 품질 gate를
+            테스트 범위로 두었습니다. 2026-08-10 로컬 소스 검증에서는 Python 테스트 488건이 통과했습니다.
+          </p>
+        </div>
+        <div class="evidence-grid">
+          <article class="evidence-fact evidence-fact-positive">
+            <p>로컬 테스트</p>
+            <strong>488</strong>
+            <span>2026-08-10 pytest 통과</span>
+          </article>
+          <article class="evidence-fact">
+            <p>주요 계약</p>
+            <strong>CLI JSON</strong>
+            <span>JavaFX와 Python의 안정적 연결</span>
+          </article>
+          <article class="evidence-fact">
+            <p>보안 경계</p>
+            <strong>Raw-text block</strong>
+            <span>익명 telemetry에서 원문 차단</span>
+          </article>
+        </div>
+      </section>
+
+      <section class="section ml-section" id="readiness" aria-labelledby="readiness-title">
+        <div class="ml-heading">
+          <p class="rule-label">ML READINESS</p>
+          <h2 id="readiness-title">모델 학습은 완료된 기능이 아니라, 통과 조건이 갖춰질 때만 여는 다음 단계입니다.</h2>
+          <p>
+            규칙 기반 진단은 계속 유효한 기준선으로 유지합니다. baseline 모델, 하이퍼파라미터 최적화, 모델 승격은 충분한 사람 확인 라벨,
+            클래스 균형, 그룹 다양성, 사후 누수 차단, 고위험 사례 검토가 확인된 뒤에만 검토합니다.
+          </p>
+        </div>
+        <ol class="ml-rail" aria-label="듀공의 ML 준비 단계">
+          <li>
+            <span>01</span>
+            <h3>기록</h3>
+            <p>AI 업무 사용 사례와 결과 신호를 구조화합니다.</p>
+          </li>
+          <li>
+            <span>02</span>
+            <h3>확인</h3>
+            <p>사용자와 검토자의 피드백을 라벨 출처로 남깁니다.</p>
+          </li>
+          <li>
+            <span>03</span>
+            <h3>정제</h3>
+            <p>품질 gate와 redaction으로 학습 후보를 제한합니다.</p>
+          </li>
+          <li>
+            <span>04</span>
+            <h3>기준선</h3>
+            <p>규칙 기반 결과와 모델 후보를 비교할 준비를 합니다.</p>
+          </li>
+          <li>
+            <span>05</span>
+            <h3>승격</h3>
+            <p>조건이 충족될 때만 검토 기반의 모델 전환을 논의합니다.</p>
+          </li>
+        </ol>
+        <div class="ml-boundary">
+          <p><strong>현재 구현</strong>진단, 추천, 보안 판단, 피드백, export, audit와 workflow gate를 운영 근거로 유지합니다.</p>
+          <p><strong>의도적으로 보류</strong>자동 학습, 자동 승인, 개인 평가, 원문 기반 중앙 수집과 재정 데이터 변경은 범위에 넣지 않습니다.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>DUGONG AI Coach Case Study</p>
+      <p>직원 감시가 아닌 업무 개선, 원문 수집보다 검토 가능한 근거, 자동화보다 안전한 다음 단계를 지향합니다.</p>
+    </footer>
+  </body>
+</html>
