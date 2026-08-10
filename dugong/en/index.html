@@ -8,9 +8,9 @@
       content="Dugong AI Coach is a JavaFX desktop system for AI work-use diagnosis, prompt improvement, and reviewer-governed learning readiness."
     />
     <title>DUGONG | AI Coach Case Study</title>
-    <link rel="stylesheet" href="../../style.css?v=20260810-dugong-en" />
+    <link rel="stylesheet" href="../../style.css?v=20260810-dugong-case3" />
   </head>
-  <body>
+  <body class="dugong-case">
     <header class="site-header">
       <a class="brand" href="#top" aria-label="Dugong AI Coach case study home">DUGONG</a>
       <nav class="site-nav" aria-label="Dugong case study navigation">
@@ -24,36 +24,43 @@
     </header>
 
     <main id="top">
-      <section class="hero" aria-labelledby="hero-title">
+      <section class="hero dugong-product-hero" aria-label="Actual Dugong AI Coach start screen">
         <img
           class="hero-image"
           src="../../assets/dugong-ai-coach-landing.png"
           alt="Dugong AI Coach start screen with prompt, report, and coaching flow"
         />
-        <div class="hero-content">
-          <p class="section-label">AI Work-Usage Diagnosis System</p>
-          <h1 id="hero-title">DUGONG<br />AI Coach</h1>
-          <p class="hero-copy">
-            A desktop system that diagnoses AI work use, improves prompts, and prepares team learning evidence under human review.
-          </p>
-          <dl class="hero-facts">
-            <div>
-              <dt>Active UI</dt>
-              <dd>JavaFX desktop application</dd>
-            </div>
-            <div>
-              <dt>Privacy boundary</dt>
-              <dd>Raw prompts stay local-first</dd>
-            </div>
-            <div>
-              <dt>ML principle</dt>
-              <dd>Reviewer-confirmed labels first</dd>
-            </div>
-          </dl>
+      </section>
+
+      <section class="section dugong-intro" id="overview" aria-labelledby="hero-title">
+        <div class="dugong-intro-layout">
+          <div>
+            <p class="rule-label">AI WORK-USAGE DIAGNOSIS SYSTEM</p>
+            <h1 id="hero-title">DUGONG AI Coach</h1>
+          </div>
+          <div class="dugong-intro-copy">
+            <p>
+              A JavaFX desktop system that diagnoses AI work use, improves prompts, and prepares team learning evidence under human review.
+            </p>
+            <dl class="dugong-facts">
+              <div>
+                <dt>Active UI</dt>
+                <dd>JavaFX desktop application</dd>
+              </div>
+              <div>
+                <dt>Privacy boundary</dt>
+                <dd>Raw prompts stay local-first</dd>
+              </div>
+              <div>
+                <dt>ML principle</dt>
+                <dd>Reviewer-confirmed labels first</dd>
+              </div>
+            </dl>
+          </div>
         </div>
       </section>
 
-      <section class="section dossier" id="overview" aria-labelledby="overview-title">
+      <section class="section dossier" aria-labelledby="overview-title">
         <div class="section-reading">
           <p class="rule-label">PRODUCT INTENT</p>
           <h2 id="overview-title">A coach for safer work improvement, not a surveillance tool for AI use.</h2>
@@ -254,8 +261,61 @@
         <div class="ml-boundary">
           <p><strong>Implemented now</strong>Diagnosis, recommendation, security judgement, feedback, export, audit, and workflow gates remain operating evidence. The PyTorch experiment readiness module checks export, audit, target validation, labels and classes, group diversity, leakage, high-risk review, and explicit human approval together.</p>
           <p><strong>PyTorch boundary</strong>Even after every condition passes, the decision is limited to shadow experiment only. <code>training_started</code> remains false, and this module does not import PyTorch, create a model, or train one.</p>
-          <p><strong>Intentionally held back</strong>Automatic training, automatic approval, individual scoring, central raw-text collection, and financial-data mutation are out of scope. <a href="../../assets/dugong-pytorch-source.html" target="_blank" rel="noopener">Open the PyTorch readiness source</a></p>
+          <p><strong>Intentionally held back</strong>Automatic training, automatic approval, individual scoring, central raw-text collection, and financial-data mutation are out of scope. <a href="#pytorch-case">View the PyTorch experiment case</a> or <a href="../../assets/dugong-pytorch-source.html" target="_blank" rel="noopener">open the readiness source</a></p>
         </div>
+      </section>
+
+      <section class="section pytorch-case" id="pytorch-case" aria-labelledby="pytorch-case-title">
+        <div class="pytorch-case-intro">
+          <p class="rule-label">PYTORCH SHADOW CASE</p>
+          <h2 id="pytorch-case-title">The first PyTorch case classifies human-confirmed work types.</h2>
+          <p>
+            The first target is <code>task_type</code>. This is not a model that automatically decides the answer. It is the preparation contract for a
+            shadow experiment that can be compared with rule-based diagnosis using human-confirmed labels. Training has not started, and every result
+            remains evidence for reviewer comparison only.
+          </p>
+        </div>
+        <ol class="pytorch-case-flow" aria-label="PyTorch shadow experiment case flow">
+          <li>
+            <span>01</span>
+            <h3>Learning candidates</h3>
+            <p>Only user-confirmed, user-corrected, or human-reviewed labels qualify. Raw prompts and chat history stay outside the input.</p>
+          </li>
+          <li>
+            <span>02</span>
+            <h3>Shared gates</h3>
+            <p>Export, audit, target quality, labels and classes, group diversity, leakage, and high-risk review must all pass.</p>
+          </li>
+          <li>
+            <span>03</span>
+            <h3>PyTorch shadow</h3>
+            <p>A classifier candidate is compared only after a separate frozen dataset and manifest are approved. Product behavior does not change.</p>
+          </li>
+          <li>
+            <span>04</span>
+            <h3>Human review</h3>
+            <p>A reviewer checks errors and grouped results before deciding whether to hold or continue the next experiment.</p>
+          </li>
+        </ol>
+        <dl class="pytorch-case-contract" aria-label="PyTorch case operating contract">
+          <div>
+            <dt>First target</dt>
+            <dd><code>task_type</code></dd>
+          </div>
+          <div>
+            <dt>Input boundary</dt>
+            <dd>Pre-use structured fields only, no raw text</dd>
+          </div>
+          <div>
+            <dt>Current stage</dt>
+            <dd>Readiness gate implemented, training not started</dd>
+          </div>
+          <div>
+            <dt>Operating impact</dt>
+            <dd>No automatic change, reviewer comparison only</dd>
+          </div>
+        </dl>
+        <p class="pytorch-case-link"><a href="../../assets/dugong-pytorch-source.html" target="_blank" rel="noopener">Open the PyTorch readiness source</a></p>
       </section>
     </main>
 

@@ -45,6 +45,7 @@
   --hero-min-height: 720px;
   --hero-tablet-min-height: 680px;
   --hero-mobile-min-height: 640px;
+  --dugong-product-hero-max-height: 680px;
   --ml-step-min-height: 216px;
   --table-min-width: 760px;
   --code-min-width: 640px;
@@ -218,6 +219,85 @@ h3 {
 
 .hero-facts div:first-child {
   padding-left: var(--radius-none);
+}
+
+.dugong-product-hero {
+  display: grid;
+  place-items: center;
+  min-height: var(--radius-none);
+}
+
+.dugong-product-hero .hero-image {
+  position: relative;
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: var(--dugong-product-hero-max-height);
+  object-fit: contain;
+}
+
+.dugong-intro {
+  padding-block: var(--space-20);
+  background: var(--color-paper);
+  border-bottom: var(--line-width) solid var(--color-line);
+}
+
+.dugong-intro-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: var(--space-16);
+  align-items: start;
+}
+
+.dugong-intro h1 {
+  max-width: 13ch;
+  font-size: var(--font-display);
+  line-height: 1.08;
+}
+
+.dugong-intro-copy {
+  display: grid;
+  gap: var(--space-8);
+  color: var(--color-muted);
+}
+
+.dugong-facts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: var(--line-width) solid var(--color-ink);
+}
+
+.dugong-facts div {
+  padding: var(--space-4);
+  border-right: var(--line-width) solid var(--color-line-strong);
+}
+
+.dugong-facts div:first-child {
+  padding-left: var(--radius-none);
+}
+
+.dugong-facts div:last-child {
+  border-right: var(--radius-none);
+}
+
+.dugong-facts dt,
+.dugong-facts dd {
+  margin: var(--radius-none);
+}
+
+.dugong-facts dt {
+  color: var(--color-blue-deep);
+  font-size: var(--font-label);
+  font-weight: var(--weight-label);
+  letter-spacing: var(--tracking-label);
+}
+
+.dugong-facts dd {
+  margin-top: var(--space-1);
+  color: var(--color-ink);
+  font-size: var(--font-body-small);
+  line-height: 1.45;
 }
 
 .hero-facts div:last-child {
@@ -778,6 +858,104 @@ h3 {
   letter-spacing: var(--tracking-label);
 }
 
+.pytorch-case {
+  background: var(--color-paper);
+  border-top: var(--line-width) solid var(--color-ink);
+  border-bottom: var(--line-width) solid var(--color-line);
+}
+
+.pytorch-case-intro {
+  display: grid;
+  gap: var(--space-5);
+  max-width: 62ch;
+}
+
+.pytorch-case-intro > p:last-child {
+  color: var(--color-muted);
+}
+
+.pytorch-case-flow {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: var(--space-12) var(--radius-none) var(--space-8);
+  padding: var(--radius-none);
+  list-style: none;
+  border-top: var(--line-width) solid var(--color-line-strong);
+}
+
+.pytorch-case-flow li {
+  display: grid;
+  gap: var(--space-3);
+  min-height: var(--ml-step-min-height);
+  padding: var(--space-6) var(--space-6) var(--space-6) var(--radius-none);
+  border-right: var(--line-width) solid var(--color-line);
+}
+
+.pytorch-case-flow li:last-child {
+  border-right: var(--radius-none);
+}
+
+.pytorch-case-flow span {
+  color: var(--color-blue);
+  font-size: var(--font-label);
+  font-weight: var(--weight-label);
+  letter-spacing: var(--tracking-label);
+}
+
+.pytorch-case-flow h3 {
+  font-size: var(--font-body);
+}
+
+.pytorch-case-flow p {
+  color: var(--color-muted);
+  font-size: var(--font-body-small);
+}
+
+.pytorch-case-contract {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: var(--radius-none);
+  border-top: var(--line-width) solid var(--color-line);
+  border-bottom: var(--line-width) solid var(--color-line);
+}
+
+.pytorch-case-contract div {
+  padding: var(--space-5) var(--space-5) var(--space-5) var(--radius-none);
+  border-right: var(--line-width) solid var(--color-line);
+}
+
+.pytorch-case-contract div:last-child {
+  border-right: var(--radius-none);
+}
+
+.pytorch-case-contract dt,
+.pytorch-case-contract dd {
+  margin: var(--radius-none);
+}
+
+.pytorch-case-contract dt {
+  color: var(--color-blue-deep);
+  font-size: var(--font-label);
+  font-weight: var(--weight-label);
+  letter-spacing: var(--tracking-label);
+}
+
+.pytorch-case-contract dd {
+  margin-top: var(--space-2);
+  color: var(--color-muted);
+  font-size: var(--font-body-small);
+  line-height: 1.5;
+}
+
+.pytorch-case-link {
+  margin-top: var(--space-6);
+  color: var(--color-blue);
+  font-size: var(--font-body-small);
+  font-weight: var(--weight-label);
+  text-decoration: underline;
+  text-underline-offset: var(--space-1);
+}
+
 .ml-code-evidence {
   background: var(--color-paper);
   border-bottom: var(--line-width) solid var(--color-line);
@@ -1082,7 +1260,11 @@ tbody td {
   .roadmap-rail,
   .direction-list,
   .ml-rail,
-  .ml-boundary {
+  .ml-boundary,
+  .dugong-intro-layout,
+  .dugong-facts,
+  .pytorch-case-flow,
+  .pytorch-case-contract {
     grid-template-columns: 1fr;
   }
 
@@ -1100,7 +1282,9 @@ tbody td {
   .report-metric-grid div,
   .roadmap-rail li,
   .direction-list article,
-  .ml-rail li {
+  .ml-rail li,
+  .pytorch-case-flow li,
+  .pytorch-case-contract div {
     padding-left: var(--radius-none);
     border-right: var(--radius-none);
     border-bottom: var(--line-width) solid var(--color-line);

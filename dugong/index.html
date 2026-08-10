@@ -8,9 +8,9 @@
       content="듀공 AI Coach는 직원의 AI 업무 활용을 진단하고 프롬프트 개선과 검토 기반 학습 준비를 돕는 JavaFX 데스크톱 시스템입니다."
     />
     <title>DUGONG | AI Coach Case Study</title>
-    <link rel="stylesheet" href="../style.css?v=20260810-dugong" />
+    <link rel="stylesheet" href="../style.css?v=20260810-dugong-case3" />
   </head>
-  <body>
+  <body class="dugong-case">
     <header class="site-header">
       <a class="brand" href="#top" aria-label="듀공 AI Coach 사례 페이지 처음으로">DUGONG</a>
       <nav class="site-nav" aria-label="듀공 사례 페이지 탐색">
@@ -24,36 +24,43 @@
     </header>
 
     <main id="top">
-      <section class="hero" aria-labelledby="hero-title">
+      <section class="hero dugong-product-hero" aria-label="듀공 AI Coach 실제 시작 화면">
         <img
           class="hero-image"
           src="../assets/dugong-ai-coach-landing.png"
           alt="듀공 AI Coach의 시작 화면과 프롬프트, 리포트, 코칭 흐름"
         />
-        <div class="hero-content">
-          <p class="section-label">AI Work-Usage Diagnosis System</p>
-          <h1 id="hero-title">DUGONG<br />AI Coach</h1>
-          <p class="hero-copy">
-            직원의 AI 업무 활용을 진단하고, 프롬프트 개선과 팀 단위의 학습 준비를 사람 검토 기준으로 다루는 데스크톱 시스템
-          </p>
-          <dl class="hero-facts">
-            <div>
-              <dt>활성 UI</dt>
-              <dd>JavaFX 데스크톱</dd>
-            </div>
-            <div>
-              <dt>보안 경계</dt>
-              <dd>원문 프롬프트는 로컬 우선</dd>
-            </div>
-            <div>
-              <dt>ML 원칙</dt>
-              <dd>사람 확인 라벨 이후에만 검토</dd>
-            </div>
-          </dl>
+      </section>
+
+      <section class="section dugong-intro" id="overview" aria-labelledby="hero-title">
+        <div class="dugong-intro-layout">
+          <div>
+            <p class="rule-label">AI WORK-USAGE DIAGNOSIS SYSTEM</p>
+            <h1 id="hero-title">DUGONG AI Coach</h1>
+          </div>
+          <div class="dugong-intro-copy">
+            <p>
+              직원의 AI 업무 활용을 진단하고, 프롬프트 개선과 팀 단위의 학습 준비를 사람 검토 기준으로 다루는 JavaFX 데스크톱 시스템입니다.
+            </p>
+            <dl class="dugong-facts">
+              <div>
+                <dt>활성 UI</dt>
+                <dd>JavaFX 데스크톱</dd>
+              </div>
+              <div>
+                <dt>보안 경계</dt>
+                <dd>원문 프롬프트는 로컬 우선</dd>
+              </div>
+              <div>
+                <dt>ML 원칙</dt>
+                <dd>사람 확인 라벨 이후에만 검토</dd>
+              </div>
+            </dl>
+          </div>
         </div>
       </section>
 
-      <section class="section dossier" id="overview" aria-labelledby="overview-title">
+      <section class="section dossier" aria-labelledby="overview-title">
         <div class="section-reading">
           <p class="rule-label">PRODUCT INTENT</p>
           <h2 id="overview-title">AI 사용을 감시하는 도구가 아니라, 안전한 업무 개선의 근거를 쌓는 코치입니다.</h2>
@@ -254,8 +261,60 @@
         <div class="ml-boundary">
           <p><strong>현재 구현</strong>진단, 추천, 보안 판단, 피드백, export, audit와 workflow gate를 운영 근거로 유지합니다. PyTorch 실험 준비 모듈은 export, audit, target 검증, 라벨과 클래스, 그룹 다양성, 누수, 고위험 검토, 사람의 명시적 승인을 함께 확인합니다.</p>
           <p><strong>PyTorch 경계</strong>모든 조건이 통과해도 결과는 shadow experiment only입니다. <code>training_started</code>는 계속 false이며, 이 모듈은 PyTorch를 import하거나 모델을 만들고 학습시키지 않습니다.</p>
-          <p><strong>의도적으로 보류</strong>자동 학습, 자동 승인, 개인 평가, 원문 기반 중앙 수집과 재정 데이터 변경은 범위에 넣지 않습니다. <a href="../assets/dugong-pytorch-source.html" target="_blank" rel="noopener">PyTorch 준비 코드 보기</a></p>
+          <p><strong>의도적으로 보류</strong>자동 학습, 자동 승인, 개인 평가, 원문 기반 중앙 수집과 재정 데이터 변경은 범위에 넣지 않습니다. <a href="#pytorch-case">PyTorch 실험 사례 보기</a> 또는 <a href="../assets/dugong-pytorch-source.html" target="_blank" rel="noopener">준비 코드 보기</a></p>
         </div>
+      </section>
+
+      <section class="section pytorch-case" id="pytorch-case" aria-labelledby="pytorch-case-title">
+        <div class="pytorch-case-intro">
+          <p class="rule-label">PYTORCH SHADOW CASE</p>
+          <h2 id="pytorch-case-title">사람이 확인한 업무 유형을 분류하는 첫 PyTorch 실험 사례입니다.</h2>
+          <p>
+            첫 대상은 <code>task_type</code>입니다. 이 사례는 정답을 자동으로 확정하는 모델이 아니라, 사람 확인 라벨을 기준으로 규칙 기반 진단과 비교할
+            shadow experiment의 준비 계약입니다. 현재는 학습을 시작하지 않았고, 모든 결과는 검토자 비교를 위한 근거로만 남습니다.
+          </p>
+        </div>
+        <ol class="pytorch-case-flow" aria-label="PyTorch shadow experiment 사례 흐름">
+          <li>
+            <span>01</span>
+            <h3>학습 후보</h3>
+            <p>사용자 확인, 사용자 수정, 사람 검토 라벨만 후보가 됩니다. 원문 프롬프트와 대화 이력은 입력에서 제외합니다.</p>
+          </li>
+          <li>
+            <span>02</span>
+            <h3>공통 gate</h3>
+            <p>export, audit, target 품질, 라벨과 클래스, 그룹 다양성, 누수, 고위험 검토를 모두 통과해야 합니다.</p>
+          </li>
+          <li>
+            <span>03</span>
+            <h3>PyTorch shadow</h3>
+            <p>별도 frozen dataset과 manifest가 승인된 뒤에만 분류 후보를 비교합니다. 제품 동작을 바꾸지 않습니다.</p>
+          </li>
+          <li>
+            <span>04</span>
+            <h3>사람 검토</h3>
+            <p>검토자가 오류와 그룹별 결과를 확인한 뒤에만 다음 실험 또는 보류를 결정합니다.</p>
+          </li>
+        </ol>
+        <dl class="pytorch-case-contract" aria-label="PyTorch 사례의 운영 계약">
+          <div>
+            <dt>첫 분류 대상</dt>
+            <dd><code>task_type</code></dd>
+          </div>
+          <div>
+            <dt>입력 경계</dt>
+            <dd>사전 사용 구조화 항목만, 원문 텍스트 제외</dd>
+          </div>
+          <div>
+            <dt>현재 상태</dt>
+            <dd>준비 게이트 구현, 학습 미시작</dd>
+          </div>
+          <div>
+            <dt>운영 영향</dt>
+            <dd>자동 변경 없음, 검토자 비교 전용</dd>
+          </div>
+        </dl>
+        <p class="pytorch-case-link"><a href="../assets/dugong-pytorch-source.html" target="_blank" rel="noopener">PyTorch 준비 코드 보기</a></p>
       </section>
     </main>
 
