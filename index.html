@@ -8,14 +8,14 @@
       content="프록스, 공사 운영 데이터의 정합성과 ML 준비 워크플로우를 다룬 시스템 구축 사례"
     />
     <title>Prox | Construction Operations Case Study</title>
-    <link rel="stylesheet" href="style.css?v=20260810-marks1" />
-  </head>
-  <body>
+    <link rel="stylesheet" href="portfolio.css?v=20260917-final" />
+
+<script src="site.js?v=20260917-portfolio" defer></script>
+<link rel="icon" type="image/webp" href="assets/prox-mark.webp"></head>
+  <body class="prox-case">
+<a class="skip-link" href="#top">본문 바로가기</a>
     <header class="site-header">
-      <nav class="project-switcher" aria-label="프로젝트 이동">
-        <a class="brand" href="./" aria-label="프록스 사례 페이지"><img class="project-mark" src="assets/prox-mark.png" alt="" />PROX</a>
-        <a class="brand" href="dugong/" aria-label="듀공 AI Coach 사례 페이지"><img class="project-mark" src="assets/dugong-mark.png" alt="" />DUGONG</a>
-      </nav>
+      <nav class="project-switcher" aria-label="프로젝트 이동"><a class="brand " href="" aria-current="page"><img class="project-mark" src="assets/prox-mark.webp" width="24" height="24" alt="" />PROX</a><a class="brand " href="dugong/" ><img class="project-mark" src="assets/dugong-mark.webp" width="24" height="24" alt="" />DUGONG</a><a class="brand personal-brand" href="jahun/" ><span class="project-mark personal-mark" aria-hidden="true">JH</span>이자헌 포트폴리오</a></nav>
       <nav class="site-nav" aria-label="사례 페이지 탐색">
         <a href="#system">시스템</a>
         <a href="#reconciliation">대사</a>
@@ -27,12 +27,8 @@
     </header>
 
     <main id="top">
-      <section class="hero" aria-labelledby="hero-title">
-        <img
-          class="hero-image"
-          src="assets/hero-construction-operations.png"
-          alt="도면과 현장 운영 도구가 놓인 공사 관리 작업대"
-        />
+      <section class="hero" data-hero-gallery aria-labelledby="hero-title">
+        <div class="hero-gallery" aria-hidden="true"><img class="hero-image is-active" src="assets/hero-construction.webp" alt="" width="1920" height="1080" decoding="async" fetchpriority="high" /><img class="hero-image " src="assets/hero-architecture.webp" alt="" width="1920" height="1080" decoding="async" fetchpriority="low" /><img class="hero-image " src="assets/hero-ai.webp" alt="" width="1920" height="1080" decoding="async" fetchpriority="low" /></div>
         <div class="hero-content">
           <p class="section-label">Construction Operations System</p>
           <h1 id="hero-title">프록스</h1>
@@ -52,7 +48,11 @@
             <dt>원칙</dt>
               <dd>원본 보존, 검토자 승인, 감사 가능성</dd>
             </div>
-          </dl>
+          </dl><div class="hero-controls" hidden aria-label="배경 이미지 전환">
+    <button type="button" data-prev aria-label="이전 배경">←</button>
+    <span class="hero-counter">1 / 3</span>
+    <button type="button" data-next aria-label="다음 배경">→</button>
+    <button type="button" data-toggle>일시정지</button></div>
         </div>
       </section>
 
