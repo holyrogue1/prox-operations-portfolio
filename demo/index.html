@@ -1,0 +1,468 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex,nofollow" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; font-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'" />
+  <title>Prox | 가상 데이터 포트폴리오 데모</title>
+  <link rel="icon" href="data:image/webp;base64,UklGRgADAABXRUJQVlA4IPQCAADQEACdASowADAAPjEYiUOiIYjjABABglAFqQoL9g0/nrlNj81QQDcAbzT+t3AzS1j8bM4P9s/u/44fkdpa8dJ/pM4l93uBL/ZPx0+AbQS9C/8H3Bf4p/SP87+XvGAfq4v0dyKU0m0u/Aob/2OxM7+Fy0aCgKeBGh/f/NTnVsDx6RKUB9h/pcPcvsvOD/xkAAD+//4PVBACo7//+eD8zzwvu46tIO0EffZu1FKYsE6yF2Qr70rvsOPE39tvfqr/3Adx7Lx09UHGNm/BbU8zM7WwMoVeXqhSIw44RF3cEHBITs184K6/eFL7uC724pfxQt27iv//uPQO563EN+H1qXLc1IOniua0aP9f+8Yc3Z0yYJVjRBOoe9crxCzAha0IKXJJHZ8y7xMHukAAC2KE4ykVn8fyOZiT+GVEnmChQRy7L3A1d0nv+uPqa3/+JaqNkX00sKulnOZfaDrQqfNlezkJJTUA6dNwq0f4PAFSFicFJEYf/k5Vw43PKnhSL740I0mO/3/+NFod9+n34dSVtJUdwc0VOOn9p7NQ0Awbxd87oA9qN/++qeWWNXvG6bYLlQsVFrtk9hqgF2Dn0sAQPnMBOO98xkfRFuLJZx/6RY2/6PL78RZbno7PZCRtDV9G8m/7PVSKHgcvLkIgVlxaLhQKkAyXMfQnyIiw778bNYw6Hmu6BqiJB1cIyMQUzKf/JPoEA+8Aolpn7zpH4/IwanEg7VEvVekP1+2o/PwZdqgeUKXUkvmL/n8/c336FzFP6Srk6I1/5Eq7ApagpNQM0ZQOzaroGSFNznF0rh6T8GFuw7P7lcVweH3rW+Ye4RyZ+WTmFXlQxezKPvkkdHlZgvmIBsM5s8pCoxqYmlm1/wcamYQATARV4ba/Tp+0CKXibwqgq18pUCetVGar8OVcxDn0ZjAy2og4La+3xh3qx0NTqTiF2Bn6hL0PfRuHi9CBociSRYQtVDOTiuPFipaZaH8Ukg+vrXUOI3oFOqX+kHbCj0ygAAA=" />
+  <style>:root {
+  --bg: #F2F5F4; --surface: #FFFFFF; --soft: #F7F9F8; --ink: #1C292B;
+  --muted: #526367; --line: #D5DEDC; --brand: #14776F; --selected: #E1F1ED;
+  --info: #286C90; --success: #216B4E; --warning: #A15D19; --danger: #B53B3D;
+  --xs: 12px; --sm: 13px; --base: 14px; --title: 20px; --metric: 24px;
+  --s1: 4px; --s2: 8px; --s3: 12px; --s4: 16px; --s5: 20px; --s6: 24px; --s8: 32px;
+  --touch: 44px; --nav: 208px; --dialog: 880px; --cost: 520px; --table: 500px;
+  --radius: 6px; --hairline: 1px; --focus: 2px; --header: 64px;
+}
+* { box-sizing: border-box; letter-spacing: 0; }
+body { margin: 0; font: var(--base)/1.5 "Malgun Gothic", "Segoe UI", sans-serif; background: var(--bg); color: var(--ink); }
+body.dialog-open { overflow: hidden; }
+button, input, select, textarea { font: inherit; }
+button, select, a { cursor: pointer; }
+button { min-height: var(--touch); border: var(--hairline) solid var(--line); border-radius: var(--radius); background: var(--surface); color: var(--ink); padding: var(--s2) var(--s3); display: inline-flex; align-items: center; justify-content: center; gap: var(--s2); }
+button:hover { background: var(--selected); }
+button:disabled { cursor: default; opacity: 0.5; }
+button.primary { background: var(--brand); color: var(--surface); border-color: var(--brand); }
+:focus-visible { outline: var(--focus) solid var(--brand); outline-offset: var(--focus); }
+input, select, textarea { width: 100%; min-width: 0; min-height: var(--touch); border: var(--hairline) solid var(--line); border-radius: var(--radius); padding: var(--s2) var(--s3); color: var(--ink); background: var(--surface); }
+textarea { resize: vertical; min-height: calc(var(--touch) * 3); }
+label { display: grid; gap: var(--s1); font-size: var(--sm); font-weight: 600; }
+h1, h2, h3, p { margin: 0; }
+h1 { font-size: var(--title); }
+h2 { font-size: var(--base); }
+h3 { font-size: var(--sm); }
+svg { width: var(--s5); height: var(--s5); flex-shrink: 0; }
+.icon-button { width: var(--touch); height: var(--touch); flex-shrink: 0; padding: var(--s2); }
+.topbar { height: var(--header); display: flex; align-items: center; gap: var(--s3); padding: 0 var(--s5); border-bottom: var(--hairline) solid var(--line); background: var(--surface); position: sticky; top: 0; z-index: 6; }
+.brand { display: inline-flex; align-items: center; gap: var(--s2); color: var(--ink); text-decoration: none; font-size: var(--title); }
+.brand img { width: var(--s8); height: var(--s8); }
+.preview-status { color: var(--muted); font-size: var(--xs); margin-left: auto; }
+.mobile-menu { display: none; }
+#sidebar { position: fixed; top: var(--header); bottom: 0; width: var(--nav); background: var(--ink); color: var(--surface); display: flex; flex-direction: column; z-index: 7; }
+#navigation { display: grid; gap: var(--s1); padding: var(--s4) var(--s2); }
+#navigation button { justify-content: flex-start; border: 0; color: var(--surface); background: transparent; text-align: left; }
+#navigation button:hover, #navigation button[aria-current="page"] { background: var(--brand); }
+.nav-footer { margin-top: auto; padding: var(--s4); font-size: var(--xs); color: var(--line); }
+#workspace { margin-left: var(--nav); padding: var(--s5); min-width: 0; }
+.page-heading { display: flex; gap: var(--s3); align-items: center; justify-content: space-between; margin-bottom: var(--s4); }
+.muted, .subtitle { color: var(--muted); font-size: var(--sm); }
+.section { background: var(--surface); border-block: var(--hairline) solid var(--line); margin-bottom: var(--s4); min-width: 0; }
+.section-heading { padding: var(--s3) var(--s4); display: flex; align-items: center; gap: var(--s2); justify-content: space-between; border-bottom: var(--hairline) solid var(--line); }
+.section-content { padding: var(--s4); }
+.filters { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) minmax(0, 1fr) auto; gap: var(--s3); align-items: end; }
+.filters.simple { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) auto; }
+.filter-presets { display: flex; gap: var(--s1); flex-wrap: wrap; margin-top: var(--s3); }
+.filter-presets button { font-size: var(--xs); }
+.table-region { max-width: 100%; max-height: var(--table); overflow: auto; overscroll-behavior: contain; }
+table { width: 100%; border-collapse: separate; border-spacing: 0; font-size: var(--sm); }
+th, td { padding: var(--s3); text-align: left; border-bottom: var(--hairline) solid var(--line); white-space: nowrap; }
+th { background: var(--soft); color: var(--muted); position: sticky; top: 0; z-index: 2; font-size: var(--xs); }
+.wide-table th:first-child, .wide-table td:first-child { position: sticky; left: 0; background: var(--surface); border-right: var(--hairline) solid var(--line); }
+.wide-table th:first-child { background: var(--soft); z-index: 3; }
+tbody tr:hover td { background: var(--selected); }
+.row-button { border: 0; color: var(--brand); background: transparent; padding: 0; min-height: var(--touch); font-weight: 700; }
+.number { text-align: right; font-variant-numeric: tabular-nums; }
+.success { color: var(--success); }
+.warning { color: var(--warning); }
+.info { color: var(--info); }
+.danger { color: var(--danger); }
+.pagination { display: flex; align-items: center; justify-content: flex-end; gap: var(--s2); padding: var(--s2) var(--s4); }
+.empty { padding: var(--s8); text-align: center; color: var(--muted); display: grid; justify-items: center; gap: var(--s3); }
+.metric-strip { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); background: var(--surface); border-block: var(--hairline) solid var(--line); margin-bottom: var(--s4); }
+.metric { padding: var(--s4); border-right: var(--hairline) solid var(--line); }
+.metric:last-child { border-right: 0; }
+.metric span { display: block; font-size: var(--xs); color: var(--muted); }
+.metric strong { font-size: var(--metric); display: block; margin-top: var(--s1); font-variant-numeric: tabular-nums; }
+.dashboard-grid { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: var(--s4); }
+.feed { list-style: none; padding: 0; margin: 0; }
+.feed li { padding: var(--s3) var(--s4); border-bottom: var(--hairline) solid var(--line); }
+.feed strong { display: block; }
+.cost-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: var(--s4); }
+.product-list { display: grid; }
+.product-list button { text-align: left; justify-content: flex-start; border: 0; border-radius: 0; border-bottom: var(--hairline) solid var(--line); padding: var(--s4); flex-direction: column; align-items: flex-start; }
+.product-list button[aria-pressed="true"] { background: var(--selected); }
+.cost-lines input { width: calc(var(--touch) * 3); text-align: right; }
+.cost-total { display: flex; align-items: center; justify-content: space-between; gap: var(--s4); padding: var(--s4); border-top: var(--hairline) solid var(--line); }
+.cost-total strong { font-size: var(--metric); font-variant-numeric: tabular-nums; }
+.dialog-backdrop { position: fixed; inset: 0; z-index: 20; background: color-mix(in srgb, var(--ink) 50%, transparent); display: flex; align-items: center; justify-content: center; padding: var(--s6); }
+.dialog { background: var(--surface); border-radius: var(--radius); width: min(100%, var(--dialog)); max-height: calc(100dvh - var(--s6) * 2); display: flex; flex-direction: column; border: var(--hairline) solid var(--line); min-width: 0; }
+.dialog.compact { max-width: var(--cost); }
+.dialog-heading { display: flex; align-items: center; justify-content: space-between; padding: var(--s3) var(--s4); gap: var(--s3); border-bottom: var(--hairline) solid var(--line); flex-shrink: 0; }
+.dialog-heading h2 { overflow-wrap: anywhere; }
+.dialog-body { overflow: auto; padding: var(--s4); min-width: 0; }
+.facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); margin: 0 0 var(--s4); }
+.facts div { padding: var(--s3) 0; border-bottom: var(--hairline) solid var(--line); min-width: 0; }
+.facts dt { color: var(--muted); font-size: var(--xs); }
+.facts dd { margin: var(--s1) 0 0; overflow-wrap: anywhere; }
+.form-stack { display: grid; gap: var(--s4); }
+.form-actions { display: flex; justify-content: flex-end; gap: var(--s2); }
+.status { min-height: var(--s6); font-size: var(--sm); }
+[hidden] { display: none !important; }
+@media (max-width: 900px) {
+  .mobile-menu { display: inline-flex; }
+  #sidebar { display: none; }
+  #sidebar.open { display: flex; }
+  #nav-backdrop:not([hidden]) { position: fixed; inset: var(--header) 0 0; background: color-mix(in srgb, var(--ink) 50%, transparent); z-index: 6; }
+  #workspace { margin-left: 0; }
+  .dashboard-grid, .cost-grid { grid-template-columns: minmax(0, 1fr); }
+  .filters { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .filters label:first-child { grid-column: 1 / -1; }
+  .filters.simple { grid-template-columns: minmax(0, 1fr) auto; }
+  .filters.simple label:first-child { grid-column: 1 / -1; }
+}
+@media (max-width: 620px) {
+  .topbar { padding: 0 var(--s3); gap: var(--s2); }
+  .preview-status { max-width: calc(var(--touch) * 3); text-align: right; }
+  #workspace { padding: var(--s3); }
+  .page-heading { flex-wrap: wrap; }
+  .metric { padding: var(--s3); }
+  .metric strong { font-size: var(--title); }
+  .ledger, .ledger tbody { display: block; width: 100%; }
+  .ledger thead { display: none; }
+  .ledger tbody tr { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); padding: var(--s2) var(--s3); border-bottom: var(--hairline) solid var(--line); gap: var(--s2) var(--s3); }
+  .ledger tbody td { display: block; padding: var(--s1) 0; border: 0; white-space: normal; min-width: 0; overflow-wrap: anywhere; text-align: left; position: static; background: transparent; }
+  .ledger.wide-table tbody td:first-child { position: static; border: 0; background: transparent; }
+  .ledger tbody td::before { content: attr(data-label); display: block; font-size: var(--xs); color: var(--muted); margin-bottom: var(--s1); }
+  .ledger td.full { grid-column: 1 / -1; }
+  .ledger .row-button { justify-content: flex-start; text-align: left; }
+  .table-region { max-height: none; }
+  .dialog-backdrop { padding: var(--s3); }
+  .dialog { max-height: calc(100dvh - var(--s3) * 2); }
+  .facts { grid-template-columns: minmax(0, 1fr); }
+  .cost-lines input { width: 100%; max-width: calc(var(--touch) * 4); }
+  .cost-total { flex-wrap: wrap; }
+}
+</style>
+</head>
+<body>
+  <header class="topbar">
+    <button id="menu-toggle" class="icon-button mobile-menu" title="메뉴 열기" aria-label="메뉴 열기" aria-expanded="false"></button>
+    <a class="brand" href="#dashboard"><img src="data:image/webp;base64,UklGRgADAABXRUJQVlA4IPQCAADQEACdASowADAAPjEYiUOiIYjjABABglAFqQoL9g0/nrlNj81QQDcAbzT+t3AzS1j8bM4P9s/u/44fkdpa8dJ/pM4l93uBL/ZPx0+AbQS9C/8H3Bf4p/SP87+XvGAfq4v0dyKU0m0u/Aob/2OxM7+Fy0aCgKeBGh/f/NTnVsDx6RKUB9h/pcPcvsvOD/xkAAD+//4PVBACo7//+eD8zzwvu46tIO0EffZu1FKYsE6yF2Qr70rvsOPE39tvfqr/3Adx7Lx09UHGNm/BbU8zM7WwMoVeXqhSIw44RF3cEHBITs184K6/eFL7uC724pfxQt27iv//uPQO563EN+H1qXLc1IOniua0aP9f+8Yc3Z0yYJVjRBOoe9crxCzAha0IKXJJHZ8y7xMHukAAC2KE4ykVn8fyOZiT+GVEnmChQRy7L3A1d0nv+uPqa3/+JaqNkX00sKulnOZfaDrQqfNlezkJJTUA6dNwq0f4PAFSFicFJEYf/k5Vw43PKnhSL740I0mO/3/+NFod9+n34dSVtJUdwc0VOOn9p7NQ0Awbxd87oA9qN/++qeWWNXvG6bYLlQsVFrtk9hqgF2Dn0sAQPnMBOO98xkfRFuLJZx/6RY2/6PL78RZbno7PZCRtDV9G8m/7PVSKHgcvLkIgVlxaLhQKkAyXMfQnyIiw778bNYw6Hmu6BqiJB1cIyMQUzKf/JPoEA+8Aolpn7zpH4/IwanEg7VEvVekP1+2o/PwZdqgeUKXUkvmL/n8/c336FzFP6Srk6I1/5Eq7ApagpNQM0ZQOzaroGSFNznF0rh6T8GFuw7P7lcVweH3rW+Ye4RyZ+WTmFXlQxezKPvkkdHlZgvmIBsM5s8pCoxqYmlm1/wcamYQATARV4ba/Tp+0CKXibwqgq18pUCetVGar8OVcxDn0ZjAy2og4La+3xh3qx0NTqTiF2Bn6hL0PfRuHi9CBociSRYQtVDOTiuPFipaZaH8Ukg+vrXUOI3oFOqX+kHbCj0ygAAA=" alt="" width="32" height="32" /><strong>Prox</strong></a>
+    <span class="preview-status">가상 데이터 · 포트폴리오 데모</span>
+    <button id="reset" class="icon-button" title="가상 데이터 초기화" aria-label="가상 데이터 초기화"></button>
+  </header>
+  <div id="nav-backdrop" hidden></div>
+  <aside id="sidebar" aria-label="주 메뉴"><nav id="navigation"></nav><div class="nav-footer">운영 서버 연결 없음</div></aside>
+  <main id="workspace" tabindex="-1"></main>
+  <div id="dialog-layer"></div>
+  <script>window.ProxDemoIcons={"House":"<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-house\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8\"></path><path d=\"M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z\"></path></svg>","ClipboardList":"<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-clipboard-list\" aria-hidden=\"true\" focusable=\"false\"><rect width=\"8\" height=\"4\" x=\"8\" y=\"2\" rx=\"1\" ry=\"1\"></rect><path d=\"M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2\"></path><path d=\"M12 11h4\"></path><path d=\"M12 16h4\"></path><path d=\"M8 11h.01\"></path><path d=\"M8 16h.01\"></path></svg>","Wrench":"<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-wrench\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.106-3.105c.32-.322.863-.22.983.218a6 6 0 0 1-8.259 7.057l-7.91 7.91a1 1 0 0 1-2.999-3l7.91-7.91a6 6 0 0 1 7.057-8.259c.438.12.54.662.219.984z\"></path></svg>","TrendingUp":"<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-trending-up\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M16 7h6v6\"></path><path d=\"m22 7-8.5 8.5-5-5L2 17\"></path></svg>","ReceiptText":"<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-receipt-text\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M13 16H8\"></path><path d=\"M14 8H8\"></path><path d=\"M16 12H8\"></path><path d=\"M4 3a1 1 0 0 1 1-1 1.3 1.3 0 0 1 .7.2l.933.6a1.3 1.3 0 0 0 1.4 0l.934-.6a1.3 1.3 0 0 1 1.4 0l.933.6a1.3 1.3 0 0 0 1.4 0l.933-.6a1.3 1.3 0 0 1 1.4 0l.934.6a1.3 1.3 0 0 0 1.4 0l.933-.6A1.3 1.3 0 0 1 19 2a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1 1.3 1.3 0 0 1-.7-.2l-.933-.6a1.3 1.3 0 0 0-1.4 0l-.934.6a1.3 1.3 0 0 1-1.4 0l-.933-.6a1.3 1.3 0 0 0-1.4 0l-.933.6a1.3 1.3 0 0 1-1.4 0l-.934-.6a1.3 1.3 0 0 0-1.4 0l-.933.6a1.3 1.3 0 0 1-.7.2 1 1 0 0 1-1-1z\"></path></svg>","Calculator":"<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-calculator\" aria-hidden=\"true\" focusable=\"false\"><rect width=\"16\" height=\"20\" x=\"4\" y=\"2\" rx=\"2\"></rect><line x1=\"8\" x2=\"16\" y1=\"6\" y2=\"6\"></line><line x1=\"16\" x2=\"16\" y1=\"14\" y2=\"18\"></line><path d=\"M16 10h.01\"></path><path d=\"M12 10h.01\"></path><path d=\"M8 10h.01\"></path><path d=\"M12 14h.01\"></path><path d=\"M8 14h.01\"></path><path d=\"M12 18h.01\"></path><path d=\"M8 18h.01\"></path></svg>","ClipboardCheck":"<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-clipboard-check\" aria-hidden=\"true\" focusable=\"false\"><rect width=\"8\" height=\"4\" x=\"8\" y=\"2\" rx=\"1\" ry=\"1\"></rect><path d=\"M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2\"></path><path d=\"m9 14 2 2 4-4\"></path></svg>","ChevronLeft":"<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-chevron-left\" aria-hidden=\"true\" focusable=\"false\"><path d=\"m15 18-6-6 6-6\"></path></svg>","ChevronRight":"<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-chevron-right\" aria-hidden=\"true\" focusable=\"false\"><path d=\"m9 18 6-6-6-6\"></path></svg>","X":"<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-x\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M18 6 6 18\"></path><path d=\"m6 6 12 12\"></path></svg>","Search":"<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-search\" aria-hidden=\"true\" focusable=\"false\"><path d=\"m21 21-4.34-4.34\"></path><circle cx=\"11\" cy=\"11\" r=\"8\"></circle></svg>","Send":"<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-send\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z\"></path><path d=\"m21.854 2.147-10.94 10.939\"></path></svg>","Menu":"<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-menu\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M4 5h16\"></path><path d=\"M4 12h16\"></path><path d=\"M4 19h16\"></path></svg>","RotateCcw":"<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide lucide-rotate-ccw\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8\"></path><path d=\"M3 3v5h5\"></path></svg>"};</script>
+  <script>/* Independent synthetic prototype. No application imports or network/persistence APIs. */
+(() => {
+  "use strict";
+  const icons = window.ProxDemoIcons;
+  const icon = (name) => icons[name] || "";
+  const escape = (value) => String(value ?? "").replace(/[&<>"']/g, (character) =>
+    ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[character]);
+  const money = (value) => `${Math.round(value).toLocaleString("ko-KR")}원`;
+  const quantity = (value) => Number(value).toLocaleString("ko-KR");
+  const localDate = (date) => [date.getFullYear(), String(date.getMonth() + 1).padStart(2, "0"),
+    String(date.getDate()).padStart(2, "0")].join("-");
+  const today = new Date();
+  const relativeDate = (days) => {
+    const date = new Date(today.getFullYear(), today.getMonth(), today.getDate() + days);
+    return localDate(date);
+  };
+  const names = ["가상 한빛 보행로 정비공사", "가상 청솔 공원 난간공사", "가상 별빛 광장 정비공사",
+    "가상 은하 보행교 개선공사", "가상 산들 마을 쉼터공사", "가상 푸른 교육관 정비공사"];
+  const corporations = ["가상 A법인", "가상 B법인", "가상 C법인", "가상 D법인"];
+  const seedOrders = () => Array.from({ length: 12 }, (_, index) => {
+    const amount = (index + 4) * 1375000;
+    const count = 36 + index * 7;
+    return {
+      id: index + 1, code: `DEMO-${String(index + 1).padStart(3, "0")}`,
+      corp: corporations[index % corporations.length], site: names[index % names.length],
+      client: `가상 발주처 ${String.fromCharCode(65 + index % 4)}`,
+      owner: `데모 영업 ${index % 3 + 1}`, manager: `데모 공사 ${index % 2 + 1}`,
+      date: relativeDate(-index * 7), due: relativeDate(7 + index * 3), amount,
+      status: index < 3 ? "완료" : "진행", paid: index < 2 ? amount : Math.round(amount * (index % 3) / 4),
+      lines: [
+        { name: "가상 보행로 난간", spec: "W2000 × H1100", qty: count, unit: "M" },
+        { name: "가상 연결 부속", spec: "표준형", qty: count * 2, unit: "EA" },
+      ],
+    };
+  });
+  const seedProducts = () => [
+    { id: 1, name: "가상 보행로 난간", spec: "W2000 × H1100", lines: [
+      { name: "가상 금속 자재", group: "자재", price: 24500, qty: 2 },
+      { name: "가상 연결 부속", group: "자재", price: 3200, qty: 4 },
+      { name: "가상 설치 작업", group: "시공", price: 18000, qty: 1 },
+    ] },
+    { id: 2, name: "가상 공원 울타리", spec: "W1800 × H1200", lines: [
+      { name: "가상 패널", group: "자재", price: 36200, qty: 1 },
+      { name: "가상 기둥", group: "자재", price: 15800, qty: 2 },
+      { name: "가상 설치 작업", group: "시공", price: 21000, qty: 1 },
+    ] },
+    { id: 3, name: "가상 쉼터 구조물", spec: "표준형", lines: [
+      { name: "가상 프레임", group: "자재", price: 86400, qty: 1 },
+      { name: "가상 조립 작업", group: "시공", price: 34000, qty: 1 },
+      { name: "가상 운반", group: "경비", price: 12000, qty: 1 },
+    ] },
+  ];
+  const navigation = [
+    ["dashboard", "대시보드", "House"], ["orders", "수주현황", "ClipboardList"],
+    ["construction", "시공현황", "Wrench"], ["sales", "영업현황", "TrendingUp"],
+    ["receivables", "수금현황", "ReceiptText"], ["cost", "원가계산", "Calculator"],
+    ["recon", "결산대사", "ClipboardCheck"],
+  ];
+  let orders = seedOrders();
+  let products = seedProducts();
+  let productId = 1;
+  let active = "dashboard";
+  let selectedPage = 1;
+  const filters = {};
+  const workspace = document.getElementById("workspace");
+  const dialogLayer = document.getElementById("dialog-layer");
+  let returnFocus = null;
+  let messages = [
+    { subject: "가상 보행로 자재 확인", body: "가상 일정에 맞춰 자재 목록을 확인했습니다.", recipient: "데모 공사 1" },
+    { subject: "가상 공원 공사 일정", body: "가상 현장 일정 확인을 요청합니다.", recipient: "데모 영업 2" },
+  ];
+
+  const button = (label, action, symbol, primary = false, extra = "") =>
+    `<button type="button" data-action="${action}" class="${primary ? "primary" : ""}" ${extra}>${icon(symbol)}${escape(label)}</button>`;
+  const empty = () => `<div class="empty"><span>조건에 맞는 가상 자료가 없습니다.</span>${button("조건 초기화", "clear-filter", "RotateCcw")}</div>`;
+  const heading = (title, actions = "") => `<div class="page-heading"><div><h1>${title}</h1><p class="subtitle">가상 법인 4개 · 가상 프로젝트 12개</p></div>${actions}</div>`;
+  const section = (title, contents, action = "") => `<section class="section"><div class="section-heading"><h2>${title}</h2>${action}</div>${contents}</section>`;
+  const projectLink = (row) => `<button type="button" class="row-button" data-action="project" data-id="${row.id}">${escape(row.code)}</button>`;
+
+  function table(columns, rows, name, ledger = true) {
+    if (!rows.length) return empty();
+    return `<div class="table-region" role="region" aria-label="${escape(name)}" tabindex="0"><table class="wide-table ${ledger ? "ledger" : ""}"><thead><tr>${columns.map((column) =>
+      `<th scope="col" class="${column.number ? "number" : ""}">${escape(column.label)}</th>`).join("")}</tr></thead><tbody>${rows.map((row) => `<tr>${columns.map((column) =>
+      `<td data-label="${escape(column.label)}" class="${column.number ? "number" : ""} ${column.full ? "full" : ""}">${column.render ? column.render(row) : escape(row[column.key])}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
+  }
+
+  function pager(total) {
+    const pages = Math.max(1, Math.ceil(total / 8));
+    return `<div class="pagination"><span class="muted">총 ${total}건</span><button type="button" class="icon-button" data-action="previous" title="이전 페이지" aria-label="이전 페이지" ${selectedPage <= 1 ? "disabled" : ""}>${icon("ChevronLeft")}</button><span>${selectedPage} / ${pages}</span><button type="button" class="icon-button" data-action="next" title="다음 페이지" aria-label="다음 페이지" ${selectedPage >= pages ? "disabled" : ""}>${icon("ChevronRight")}</button></div>`;
+  }
+
+  function filterSection(dated = true) {
+    const current = filters[active] || { q: "", from: "", to: "", status: "" };
+    return section("조회 조건", `<div class="section-content"><form id="filter-form" class="filters ${dated ? "" : "simple"}"><label>검색<input type="search" name="q" value="${escape(current.q)}" placeholder="프로젝트, 현장명, 가상 담당자" /></label>${dated ?
+      `<label>등록일 From<input type="date" name="from" value="${current.from}" /></label><label>등록일 To<input type="date" name="to" value="${current.to}" /></label>` :
+      `<label>상태<select name="status"><option value="">전체</option><option ${current.status === "진행" ? "selected" : ""}>진행</option><option ${current.status === "완료" ? "selected" : ""}>완료</option></select></label>`}<button class="primary" type="submit">${icon("Search")}검색</button></form>${dated ? `<div class="filter-presets" role="group" aria-label="조회 기간">${[ ["month", "이번 달"], ["quarter", "이번 분기"], ["year", "올해"], ["all", "전체 기간"] ].map(([key, label]) =>
+      `<button type="button" data-action="preset" data-preset="${key}">${label}</button>`).join("")}</div>` : ""}<p id="filter-status" class="status danger" role="status"></p></div>`);
+  }
+
+  function filteredRows() {
+    const current = filters[active] || { q: "", from: "", to: "", status: "" };
+    return orders.filter((row) => (!current.q || Object.values(row).some((value) =>
+      String(value).toLowerCase().includes(current.q.toLowerCase()))) &&
+      (!current.from || row.date >= current.from) && (!current.to || row.date <= current.to) &&
+      (!current.status || row.status === current.status));
+  }
+
+  function dashboard() {
+    const remaining = orders.reduce((sum, row) => sum + row.amount - row.paid, 0);
+    const compactRemaining = remaining >= 100000000 ? `${(remaining / 100000000).toFixed(2)}억원`
+      : `${Math.round(remaining / 10000).toLocaleString("ko-KR")}만원`;
+    return heading("대시보드", button("메시지 작성", "compose", "Send", true)) +
+      `<div class="metric-strip"><div class="metric"><span>가상 수주</span><strong>${orders.length}건</strong></div><div class="metric"><span>가상 진행 현장</span><strong>${orders.filter((row) => row.status === "진행").length}건</strong></div><div class="metric"><span>가상 미수금</span><strong>${compactRemaining}</strong></div></div>` +
+      `<div class="dashboard-grid">${section("담당 프로젝트", table([
+        { label: "프로젝트", render: projectLink }, { label: "현장명", key: "site", full: true },
+        { label: "가상 담당자", key: "owner" }, { label: "납품예정일", key: "due" },
+      ], orders.slice(0, 5), "담당 프로젝트"))}${section("가상 메시지", `<ul class="feed">${messages.slice(-4).reverse().map((message) => `<li><strong>${escape(message.subject)}</strong><p>${escape(message.body)}</p><span class="muted">${escape(message.recipient)}</span></li>`).join("")}</ul>`)}</div>` +
+      section("다가오는 가상 일정", table([
+        { label: "예정일", key: "due" }, { label: "현장명", key: "site", full: true },
+        { label: "공사 담당", key: "manager" }, { label: "상태", render: (row) => `<span class="info">${row.status}</span>` },
+      ], orders.slice(0, 4), "가상 일정"));
+  }
+
+  function listPage() {
+    const rows = filteredRows();
+    selectedPage = Math.min(selectedPage, Math.max(1, Math.ceil(rows.length / 8)));
+    const selected = rows.slice((selectedPage - 1) * 8, selectedPage * 8);
+    const common = [ { label: "프로젝트", render: projectLink }, { label: "법인", key: "corp" },
+      { label: "현장명", key: "site", full: true } ];
+    let columns;
+    if (active === "orders") columns = [...common, { label: "수요처", key: "client" },
+      { label: "영업 담당", key: "owner" }, { label: "공사 담당", key: "manager" },
+      { label: "시공물량", number: true, render: (row) => quantity(row.lines[0].qty) + " M" },
+      { label: "가상 계약금액", number: true, render: (row) => money(row.amount) },
+      { label: "등록일", key: "date" }, { label: "납품예정일", key: "due" }];
+    if (active === "construction") columns = [...common, { label: "공사 담당", key: "manager" },
+      { label: "등록일", key: "date" }, { label: "가상 시공물량", number: true,
+        render: (row) => quantity(row.status === "완료" ? row.lines[0].qty : Math.floor(row.lines[0].qty / 2)) + " M" },
+      { label: "상태", render: (row) => `<span class="${row.status === "완료" ? "success" : "info"}">${row.status}</span>` }];
+    if (active === "sales") columns = [...common, { label: "영업 담당", key: "owner" },
+      { label: "가상 계약금액", number: true, render: (row) => money(row.amount) },
+      { label: "가상 입금액", number: true, render: (row) => money(row.paid) },
+      { label: "수금 상태", render: (row) => row.amount === row.paid ? '<span class="success">수금 완료</span>' : row.paid ? '<span class="info">부분 입금</span>' : "미입금" }];
+    if (active === "receivables") columns = [...common, { label: "가상 청구금액", number: true,
+      render: (row) => money(row.amount) }, { label: "가상 수금금액", number: true,
+      render: (row) => money(row.paid) }, { label: "가상 미수금", number: true,
+      render: (row) => `<span class="${row.amount > row.paid ? "warning" : "success"}">${money(row.amount - row.paid)}</span>` },
+      { label: "수금예정일", key: "due" }];
+    if (active === "recon") columns = [...common, { label: "가상 계약금액", number: true,
+      render: (row) => money(row.amount) }, { label: "가상 비용", number: true,
+      render: (row) => money(Math.round(row.amount * 0.7)) }, { label: "가상 차액", number: true,
+      render: (row) => money(row.amount - Math.round(row.amount * 0.7)) }, { label: "자료 상태", render: () => "가상 예시" }];
+    const title = navigation.find(([key]) => key === active)[1];
+    const dated = ["orders", "construction", "recon"].includes(active);
+    return heading(title) + filterSection(dated) + section("가상 자료 목록",
+      table(columns, selected, title + " 목록") + pager(rows.length));
+  }
+
+  function costPage() {
+    const product = products.find((row) => row.id === productId);
+    const total = product.lines.reduce((sum, row) => sum + Math.round(row.price * row.qty), 0);
+    return heading("원가계산") + `<div class="cost-grid">${section("가상 제품", `<div class="product-list">${products.map((row) =>
+      `<button type="button" data-action="product" data-id="${row.id}" aria-pressed="${row.id === productId}"><strong>${escape(row.name)}</strong><span class="muted">${escape(row.spec)}</span></button>`).join("")}</div>`)}${section(product.name,
+      `<div class="table-region cost-lines" role="region" aria-label="가상 단가 계산" tabindex="0"><table class="ledger"><thead><tr><th>항목</th><th>단가</th><th>수량</th><th>합계</th></tr></thead><tbody>${product.lines.map((row, index) => `<tr><td data-label="항목" class="full"><strong>${escape(row.name)}</strong><span class="muted"> / ${row.group}</span></td><td data-label="단가"><input type="number" min="0" max="100000000" step="1" data-cost="price" data-index="${index}" value="${row.price}" aria-label="${row.name} 단가" /></td><td data-label="수량"><input type="number" min="0" max="10000" step="0.1" data-cost="qty" data-index="${index}" value="${row.qty}" aria-label="${row.name} 수량" /></td><td data-label="합계" class="number" data-amount="${index}">${money(row.price * row.qty)}</td></tr>`).join("")}</tbody></table></div><div class="cost-total"><span>단가 × 수량 가상 합계</span><strong id="cost-total">${money(total)}</strong></div><div class="section-content"><p class="muted">회사 원가 산식·단가 자료 미포함</p><p id="cost-status" class="status danger" role="status"></p></div>`)} </div>`;
+  }
+
+  function render() {
+    document.getElementById("navigation").innerHTML = navigation.map(([key, name, symbol]) =>
+      `<button type="button" data-action="navigate" data-page="${key}" ${active === key ? 'aria-current="page"' : ""}>${icon(symbol)}${name}</button>`).join("");
+    workspace.innerHTML = active === "dashboard" ? dashboard() : active === "cost" ? costPage() : listPage();
+  }
+
+  function closeNavigation() {
+    document.getElementById("sidebar").classList.remove("open");
+    document.getElementById("nav-backdrop").hidden = true;
+    document.getElementById("menu-toggle").setAttribute("aria-expanded", "false");
+  }
+
+  function openDialog(title, body, compact = false) {
+    returnFocus = document.activeElement;
+    dialogLayer.innerHTML = `<div class="dialog-backdrop"><section class="dialog ${compact ? "compact" : ""}" role="dialog" aria-modal="true" aria-labelledby="dialog-title"><header class="dialog-heading"><h2 id="dialog-title">${escape(title)}</h2><button type="button" class="icon-button" data-action="close-dialog" aria-label="닫기" title="닫기">${icon("X")}</button></header><div class="dialog-body">${body}</div></section></div>`;
+    document.body.classList.add("dialog-open");
+    dialogLayer.querySelector('button').focus();
+  }
+
+  function closeDialog() {
+    dialogLayer.innerHTML = "";
+    document.body.classList.remove("dialog-open");
+    if (returnFocus?.isConnected) returnFocus.focus({ preventScroll: true });
+    returnFocus = null;
+  }
+
+  function projectDialog(id) {
+    const row = orders.find((order) => order.id === id);
+    if (!row) return;
+    const facts = [["프로젝트", row.code], ["현장명", row.site], ["가상 법인", row.corp],
+      ["가상 발주처", row.client], ["가상 영업 담당", row.owner], ["가상 공사 담당", row.manager],
+      ["가상 계약금액", money(row.amount)], ["납품예정일", row.due]];
+    openDialog(row.code + " / 가상 프로젝트", `<dl class="facts">${facts.map(([key, value]) =>
+      `<div><dt>${escape(key)}</dt><dd>${escape(value)}</dd></div>`).join("")}</dl>${table([
+        { label: "가상 제품", key: "name", full: true }, { label: "규격", key: "spec" },
+        { label: "수량", number: true, render: (line) => quantity(line.qty) }, { label: "단위", key: "unit" },
+      ], row.lines, "가상 프로젝트 품목")}`);
+  }
+
+  function composeDialog() {
+    openDialog("가상 메시지 작성", `<form id="message-form" class="form-stack"><label>받는 대상<select name="recipient">${["데모 공사 1", "데모 공사 2", "데모 영업 1", "데모 영업 2", "데모 영업 3"].map((name) => `<option>${name}</option>`).join("")}</select></label><label>제목<input name="subject" maxlength="80" required /></label><label>메시지<textarea name="body" maxlength="500" required></textarea></label><div class="form-actions"><button type="button" data-action="close-dialog">취소</button><button type="submit" class="primary">${icon("Send")}가상 보내기</button></div></form>`, true);
+  }
+
+  document.getElementById("menu-toggle").innerHTML = icon("Menu");
+  document.getElementById("reset").innerHTML = icon("RotateCcw");
+  document.getElementById("menu-toggle").addEventListener("click", () => {
+    const open = document.getElementById("sidebar").classList.toggle("open");
+    document.getElementById("nav-backdrop").hidden = !open;
+    document.getElementById("menu-toggle").setAttribute("aria-expanded", String(open));
+  });
+  document.getElementById("nav-backdrop").addEventListener("click", closeNavigation);
+  document.getElementById("reset").addEventListener("click", () => openDialog("가상 데이터 초기화",
+    `<p>이 미리보기에서 변경한 가상 단가와 메시지를 초기화할까요?</p><div class="form-actions">${button("취소", "close-dialog", "X")}${button("초기화", "confirm-reset", "RotateCcw", true)}</div>`, true));
+
+  document.addEventListener("click", (event) => {
+    const target = event.target.closest("[data-action]");
+    if (!target || target.disabled) return;
+    const action = target.dataset.action;
+    if (action === "navigate") {
+      active = target.dataset.page;
+      selectedPage = 1;
+      closeNavigation();
+      render();
+      workspace.focus({ preventScroll: true });
+      window.scrollTo(0, 0);
+    }
+    if (action === "project") projectDialog(Number(target.dataset.id));
+    if (action === "close-dialog") closeDialog();
+    if (action === "compose") composeDialog();
+    if (action === "previous" || action === "next") {
+      selectedPage += action === "previous" ? -1 : 1;
+      render();
+    }
+    if (action === "clear-filter") {
+      filters[active] = { q: "", from: "", to: "", status: "" };
+      selectedPage = 1;
+      render();
+    }
+    if (action === "preset") {
+      const values = Object.fromEntries(new FormData(document.getElementById("filter-form")));
+      const preset = target.dataset.preset;
+      const firstMonth = preset === "quarter" ? Math.floor(today.getMonth() / 3) * 3 : preset === "year" ? 0 : today.getMonth();
+      filters[active] = { ...values, from: preset === "all" ? "" : localDate(new Date(today.getFullYear(), firstMonth, 1)),
+        to: preset === "all" ? "" : localDate(today) };
+      selectedPage = 1;
+      render();
+    }
+    if (action === "product") { productId = Number(target.dataset.id); render(); }
+    if (action === "confirm-reset") {
+      orders = seedOrders(); products = seedProducts(); productId = 1; messages = messages.slice(0, 2);
+      for (const key of Object.keys(filters)) delete filters[key];
+      selectedPage = 1; closeDialog(); render(); workspace.focus({ preventScroll: true });
+      window.scrollTo(0, 0);
+    }
+  });
+
+  document.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const data = Object.fromEntries(new FormData(event.target));
+    if (event.target.id === "filter-form") {
+      if (data.from && data.to && data.from > data.to) {
+        document.getElementById("filter-status").textContent = "시작일은 종료일보다 늦을 수 없습니다.";
+        return;
+      }
+      filters[active] = { ...data, q: (data.q || "").trim() };
+      selectedPage = 1;
+      render();
+    }
+    if (event.target.id === "message-form") {
+      if (!data.subject.trim() || !data.body.trim()) return;
+      messages.push(data); closeDialog(); render();
+    }
+  });
+
+  document.addEventListener("input", (event) => {
+    const input = event.target;
+    if (!input.dataset.cost) return;
+    const product = products.find((row) => row.id === productId);
+    const line = product.lines[Number(input.dataset.index)];
+    const value = Number(input.value);
+    const maximum = input.dataset.cost === "price" ? 100000000 : 10000;
+    if (!Number.isFinite(value) || value < 0 || value > maximum || input.value === "") {
+      document.getElementById("cost-status").textContent = "허용 범위 안의 0 이상 숫자를 입력하세요.";
+      input.setAttribute("aria-invalid", "true");
+      return;
+    }
+    input.removeAttribute("aria-invalid");
+    document.getElementById("cost-status").textContent = "";
+    line[input.dataset.cost] = input.dataset.cost === "price" ? Math.round(value) : value;
+    document.querySelector(`[data-amount="${input.dataset.index}"]`).textContent = money(line.price * line.qty);
+    document.getElementById("cost-total").textContent = money(product.lines.reduce((sum, row) => sum + Math.round(row.price * row.qty), 0));
+  });
+
+  document.addEventListener("keydown", (event) => {
+    const dialog = dialogLayer.querySelector(".dialog");
+    if (event.key === "Escape") {
+      if (dialog) closeDialog(); else closeNavigation();
+    }
+    if (event.key !== "Tab" || !dialog) return;
+    const elements = [...dialog.querySelectorAll('button:not(:disabled), input, select, textarea, [tabindex="0"]')];
+    const first = elements[0], last = elements[elements.length - 1];
+    if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+    else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+  });
+  window.addEventListener("hashchange", () => {
+    if (location.hash === "#dashboard") { active = "dashboard"; selectedPage = 1; closeNavigation(); render(); window.scrollTo(0, 0); }
+  });
+  render();
+})();
+</script>
+</body>
+</html>
