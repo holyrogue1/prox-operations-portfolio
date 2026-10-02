@@ -236,8 +236,9 @@ cards or invented outcomes. Prox project summaries name the performed work.
 Personal hero navigation retains homepage/demo/source links; project and report
 navigation remains in the header. Replace the generic hero-summary with the
 reconciliation evidence. Contact CTA links to a separate unframed section with
-the user's explicitly authorized public email and phone. Do not invent a job
-target. Use mailto/tel anchors with 44px targets and existing tokens.
+the user's explicitly authorized public email only. Remove the personal phone
+from current pages. Do not invent a job target. Use a mailto anchor with 44px
+targets and existing tokens.
 Both heroes use compact --space-3 gaps and --space-8 vertical padding on mobile
 so evidence, touch targets, and image controls remain reachable.
 Personal mobile hero minimum height subtracts --space-12 from the existing
@@ -252,3 +253,12 @@ the default curated view. No-JS retains all eight reports with filters hidden.
 Featured labels are plain inline text, not pills. Focus and hover remain visible.
 ML skills describe personal learning separately from Prox's data-preparation
 implementation, with no claimed completed training run or model accuracy.
+
+## Contact Privacy and Dugong Evidence
+
+Retain the broad systems/data/AI positioning until the user names a target role.
+Show the archived 2026-08-10 Dugong local-source verification of 492 passing
+Python tests in the personal project summary. Include date and test scope;
+do not describe it as current test coverage, model accuracy, or business impact.
+Reuse project-impact typography and spacing. No new visual tokens or assets.
+Historical public Git commits are not rewritten by this forward release.
