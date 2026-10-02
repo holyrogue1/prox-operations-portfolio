@@ -9,21 +9,21 @@
     />
     <title>Prox | Construction Operations Case Study</title>
     <link rel="stylesheet" href="../portfolio.css?v=20260917-final" />
-<link rel="stylesheet" href="../demo-links.css?v=20261002-home-credentials" />
+<link rel="stylesheet" href="../demo-links.css?v=20261002-public-portfolio" />
 
 <script src="../site.js?v=20260917-portfolio" defer></script>
 <link rel="icon" type="image/webp" href="../assets/prox-mark.webp"></head>
   <body class="prox-case">
 <a class="skip-link" href="#top">Skip to content</a>
     <header class="site-header">
-      <nav class="project-switcher" aria-label="Project navigation"><a class="brand " href="../en/?v=20261002-home-credentials" aria-current="page"><img class="project-mark" src="../assets/prox-mark.webp" width="24" height="24" alt="" />PROX</a><a class="brand " href="../dugong/en/" ><img class="project-mark" src="../assets/dugong-mark.webp" width="24" height="24" alt="" />DUGONG</a><a class="brand personal-brand" href="../jahun/en/?v=20261002-home-credentials" ><span class="project-mark personal-mark" aria-hidden="true">JH</span>Jahun Lee</a></nav>
+      <nav class="project-switcher" aria-label="Project navigation"><a class="brand " href="../en/?v=20261002-public-portfolio" aria-current="page"><img class="project-mark" src="../assets/prox-mark.webp" width="24" height="24" alt="" />PROX</a><a class="brand " href="../dugong/en/" ><img class="project-mark" src="../assets/dugong-mark.webp" width="24" height="24" alt="" />DUGONG</a><a class="brand personal-brand" href="../jahun/en/?v=20261002-public-portfolio" ><span class="project-mark personal-mark" aria-hidden="true">JH</span>Jahun Lee</a></nav>
       <nav class="site-nav" aria-label="Case study navigation"><a href="https://proxsystem.net/" target="_blank" rel="noopener noreferrer">Website</a>
         <a href="#system">System</a>
         <a href="#reconciliation">Reconciliation</a>
         <a href="#process">Process</a>
         <a href="#roadmap">Roadmap</a>
         <a href="#ml">ML</a>
-        <a href="../?v=20261002-home-credentials">한국어 <span class="country-label">KR</span></a>
+        <a href="../?v=20261002-public-portfolio">한국어 <span class="country-label">KR</span></a>
       </nav>
     </header>
 
@@ -274,48 +274,14 @@
         </div>
       </section>
 
-      <section class="section ml-code-evidence" aria-labelledby="ml-code-title">
-        <div class="section-heading ml-code-heading">
-          <p class="rule-label">Code evidence</p>
-          <h2 id="ml-code-title">The code records conditions that must stop before it starts recommendations.</h2>
-          <p>The actual <code>training_gate.py</code> checks human-review labels and the review window. When evidence is insufficient, it always records that training has not started. This report does not launch a model.</p>
+      <section class="section" aria-labelledby="ml-validation-title">
+        <div class="section-heading">
+          <h2 id="ml-validation-title">Validation before training</h2>
+          <p>Implemented readiness checks for reviewer-label composition, review periods, and feedback integrity. A check result does not start model training.</p>
         </div>
-        <div class="ml-code-layout">
-          <figure class="ml-code-figure">
-            <div class="ml-code-frame">
-              <div class="ml-source-bar"><span>backend/app/ml/training_gate.py</span><a href="../assets/ml-code-source.html#training-gate" target="_blank" rel="noopener">Full source</a></div>
-              <pre aria-label="Excerpt from the Prox machine-learning training safety gate"><code>"""Read-only safety gate for future candidate-ranking model training."""
-
-T5_GATE_VERSION = "t5-readiness-v1"
-MIN_REVIEW_WINDOW_DAYS = 14
-
-POSITIVE_DECISIONS = frozenset({"user_confirmed", "user_corrected"})
-HARD_NEGATIVE_DECISION = "user_rejected"
-
-def assess_t5_readiness(...):
-    ...
-    status = "BLOCKED" if blockers else "REVIEW_REQUIRED"
-    return {
-        "gate_version": T5_GATE_VERSION,
-        "status": status,
-        "training_started": False,
-        "blockers": blockers,
-        "manual_requirements": [
-            "Approve training explicitly; this report never starts training.",
-        ],
-    }</code></pre>
-            </div>
-            <figcaption>Excerpt from the actual source. The full source and verification test can be opened through the links.</figcaption>
-          </figure>
-          <div class="ml-code-notes">
-            <dl>
-              <div><dt>Human labels</dt><dd>Confirmation, correction, and rejection are retained as distinct evidence.</dd></div>
-              <div><dt>14-day window</dt><dd>A short period of coincidental results cannot open the next stage.</dd></div>
-              <div><dt>Block first</dt><dd>Deleted feedback or insufficient positive and negative evidence blocks progress immediately.</dd></div>
-              <div><dt>Final approval</dt><dd>Training does not start without explicit human approval, even when baseline conditions are met.</dd></div>
-            </dl>
-            <a class="ml-test-link" href="../assets/ml-code-source.html#training-gate-test" target="_blank" rel="noopener">Verification test</a>
-          </div>
+        <div class="section-reading">
+          <p>Confirmation, correction, and rejection remain distinct evidence. Insufficient evidence does not advance to the next stage. Data splits, baseline comparison, and evaluation criteria need separate review before actual training.</p>
+          <p>This portfolio describes the work and its validation criteria only. Company application source, databases, and security configuration are excluded from publication.</p>
         </div>
       </section>
 

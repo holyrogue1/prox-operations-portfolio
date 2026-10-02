@@ -135,10 +135,9 @@ Base unit is `4px`.
   contract or operational amounts.
 - Each capture opens the same redacted asset at its natural size for inspection.
 - The ML pipeline uses a numbered process rail, not a fake product screen.
-- ML code evidence uses a real, read-only source excerpt on a paper code panel.
-  The public panel links to the exact safe source and its test file, and it
-  states the non-training boundary beside the source rather than inventing a
-  model interface.
+- ML validation evidence is described in prose without company source excerpts
+  or test-source downloads. Completed readiness checks are kept distinct from
+  future model training and performance evaluation.
 - The report-integration band presents source figures as an audit baseline,
   never as a Prox product-performance claim.
 - The efficiency roadmap uses a four-part ruled sequence. It reads as a gated
