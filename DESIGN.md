@@ -203,3 +203,22 @@ where supported by the implementation. Model training, accuracy evaluation, and
 production ML inference are not claimed as completed. Explain the completed
 data-preparation work separately from those future model-evaluation steps.
 Reuse existing colors, typography, spacing, and responsive layouts; no new theme.
+
+## Course Completion Credentials and Entry Links
+
+The personal portfolio lists three supplied Coursera course-completion
+certificates with exact course titles, provider, and completion date. They are
+not described as exam-based Microsoft or IBM professional certifications.
+Use the existing report-row ruled layout, not certificate cards. Link to the
+verification URLs printed on the supplied certificates. Do not publish original
+PDFs, signatures, local paths, or additional personal identifiers.
+Credential links reuse --demo-link-min-height for touch targets.
+
+On the Prox case, make the production homepage the first hero action with the
+existing primary-link treatment, and repeat it in the navigation. Preserve the
+demo and scoped source links. Version internal links between the four entry pages
+so navigation does not reuse the previous cached HTML. Use the same release
+identifier for stylesheet requests and entry-page links; no auth changes.
+Credential rows start after --space-8 separation from their section heading.
+On narrow Prox case viewports, hero-content uses --space-3 gaps and --space-8
+vertical padding so the added homepage link does not push controls off-screen.

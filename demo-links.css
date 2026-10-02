@@ -20,3 +20,20 @@
   border-color: var(--color-blue);
   background: var(--color-blue-soft);
 }
+
+.credential-row .text-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--demo-link-min-height);
+}
+
+.credential-list {
+  margin-top: var(--space-8);
+}
+
+@media (max-width: 760px) {
+  .prox-case .hero-content {
+    gap: var(--space-3);
+    padding-block: var(--space-8);
+  }
+}
