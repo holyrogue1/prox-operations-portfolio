@@ -52,12 +52,25 @@ document.querySelectorAll('[data-hero-gallery]').forEach((hero) => {
   refresh();
 });
 
-const filters = document.querySelectorAll('[data-report-filter]');
-filters.forEach((button) => button.addEventListener('click', () => {
-  filters.forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
-  document.querySelectorAll('[data-report-category]').forEach((row) => {
-    row.hidden = button.dataset.reportFilter !== 'all' && row.dataset.reportCategory !== button.dataset.reportFilter;
-  });
-  const count = Array.from(document.querySelectorAll('[data-report-category]')).filter((row) => !row.hidden).length;
-  document.querySelector('[data-report-count]').textContent = document.documentElement.lang === 'en' ? `${count} documents` : `${count}개 자료`;
-}));
+document.querySelectorAll('#reports').forEach((library) => {
+  const filters = Array.from(library.querySelectorAll('[data-report-filter]'));
+  const rows = Array.from(library.querySelectorAll('[data-report-category]'));
+  if (!filters.length) return;
+  const english = document.documentElement.lang === 'en';
+  function applyFilter(button) {
+    const category = button.dataset.reportFilter;
+    filters.forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
+    rows.forEach((row) => {
+      row.hidden = category === 'featured'
+        ? !row.hasAttribute('data-report-featured')
+        : category !== 'all' && row.dataset.reportCategory !== category;
+    });
+    const count = rows.filter((row) => !row.hidden).length;
+    library.querySelector('[data-report-count]').textContent = english
+      ? `${count} of ${rows.length} reports`
+      : `전체 ${rows.length}개 중 ${count}개 자료`;
+  }
+  filters.forEach((button) => button.addEventListener('click', () => applyFilter(button)));
+  applyFilter(filters.find((button) => button.hasAttribute('data-default-filter')) || filters[0]);
+  library.querySelector('.report-filters').hidden = false;
+});
