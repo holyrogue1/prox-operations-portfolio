@@ -184,9 +184,22 @@ Report detail pages deliberately use text-first document layouts instead of deco
 
 The Prox case and personal portfolio hero link to the independently authored
 synthetic demo and its scoped open-source folder. Korean and English entry pages
-must resolve to the same demo. Never link to production or expose company files.
+must resolve to the same demo. The user has explicitly authorized a separate
+https://proxsystem.net/ production-site link. This is navigation only: never
+publish company source, operational data, credentials, or security configuration.
 Reuse the existing hero-actions, text-link, color and spacing tokens.
 New token: --demo-link-min-height 44px. New demo links use that minimum touch
 height, --space-2/--space-4 padding, --line-width borders, --radius-small corners,
 and --color-blue-soft for the primary link. Wrap naturally on narrow screens;
 keep existing project/report links and all other portfolio content unchanged.
+
+## Prox ML Portfolio Description
+
+Use the existing skill-row ruled layout for a personal-portfolio section covering
+data analysis, source validation, and ML data preparation. Make ML work explicit
+in the Prox project summary and the case-study heading. Describe normalization,
+reviewer feedback labels, feature snapshots, and training-readiness checks only
+where supported by the implementation. Model training, accuracy evaluation, and
+production ML inference are not claimed as completed. Explain the completed
+data-preparation work separately from those future model-evaluation steps.
+Reuse existing colors, typography, spacing, and responsive layouts; no new theme.

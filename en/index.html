@@ -36,7 +36,7 @@
           <p class="hero-copy">
             A construction operations system that connects orders, execution, costs, and closeout data in one operating flow.
           </p>
-          <div class="hero-actions portfolio-demo-actions" aria-label="Public demo"><a class="text-link demo-link demo-link-primary" href="../demo/">Try demo (Korean) →</a><a class="text-link demo-link" href="https://github.com/holyrogue1/prox-operations-portfolio/tree/main/demo">Demo source →</a></div>
+          <div class="hero-actions portfolio-demo-actions" aria-label="Public demo"><a class="text-link demo-link demo-link-primary" href="../demo/">Try demo (Korean) →</a><a class="text-link demo-link" href="https://github.com/holyrogue1/prox-operations-portfolio/tree/main/demo">Demo source →</a><a class="text-link demo-link" href="https://proxsystem.net/" target="_blank" rel="noopener noreferrer">Open Prox →</a></div>
           <dl class="hero-facts">
             <div>
               <dt>Problem</dt>
@@ -253,8 +253,8 @@
 
       <section class="section ml-section" id="ml" aria-labelledby="ml-title">
         <div class="section-heading ml-heading">
-          <h2 id="ml-title">Before automatic approval, build evidence that can support learning.</h2>
-          <p>Prox establishes data lineage and reviewer decisions before operating a model. Automated learning, automated scoring, and automated approval are outside this stage.</p>
+          <h2 id="ml-title">Data analysis and validation for machine learning</h2>
+          <p>Implemented an ML data pipeline connecting source analysis, normalization, candidate matching, and reviewer feedback. Training-readiness checks examine labels and review evidence. Model training, performance evaluation, and production inference are not claimed as completed.</p>
         </div>
         <ol class="ml-rail" aria-label="Machine-learning readiness data flow">
           <li><span>M1</span><h3>Source staging</h3><p>Imported files and source references are retained as unchanged evidence.</p></li>
@@ -262,6 +262,11 @@
           <li><span>M3</span><h3>Candidate matching</h3><p>Deterministic candidates and reasons are provided without automatically changing business data.</p></li>
           <li><span>M4</span><h3>Quality isolation</h3><p>Untrustworthy source rows are separated from the normal processing flow.</p></li>
           <li><span>M5</span><h3>Feedback readiness</h3><p>Confirmation, correction, and rejection decisions accumulate with immutable feature snapshots.</p></li>
+        </ol>
+        <ol class="process-log" aria-label="Data analysis and ML validation work">
+          <li><span>Data analysis</span><h3>Reconcile source structure and calculations</h3><p>Compared column structures, item and unit representations, and profitability calculations to trace discrepancies. Business-data reconciliation is distinct from model-performance evaluation.</p></li>
+          <li><span>Data validation</span><h3>Retain normalization history and review labels</h3><p>Preserved source references and transformation history, recorded confirmation, correction, and rejection as explicit labels, and isolated data with quality issues.</p></li>
+          <li><span>ML readiness</span><h3>Check evidence before training</h3><p>Checked label counts, positive and negative examples, review periods, and feedback integrity. Feature snapshots are retained; actual training and baseline-model comparison remain separately reviewed next steps.</p></li>
         </ol>
         <div class="ml-boundary">
           <p><strong>Reviewer Gate</strong> Actual item identification and business changes happen only after a reviewer decision.</p>
