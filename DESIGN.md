@@ -179,3 +179,14 @@ Base unit is `4px`.
 Existing Prox/Dugong diagnostic grids and code labels remain as factual evidence layouts.
 The no-three-card/eyebrow limits apply to newly authored promotional composition, not retained technical tables.
 Report detail pages deliberately use text-first document layouts instead of decorative cover images.
+
+## Synthetic Demo Navigation
+
+The Prox case and personal portfolio hero link to the independently authored
+synthetic demo and its scoped open-source folder. Korean and English entry pages
+must resolve to the same demo. Never link to production or expose company files.
+Reuse the existing hero-actions, text-link, color and spacing tokens.
+New token: --demo-link-min-height 44px. New demo links use that minimum touch
+height, --space-2/--space-4 padding, --line-width borders, --radius-small corners,
+and --color-blue-soft for the primary link. Wrap naturally on narrow screens;
+keep existing project/report links and all other portfolio content unchanged.

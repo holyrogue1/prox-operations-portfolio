@@ -1,0 +1,22 @@
+:root {
+  --demo-link-min-height: 44px;
+}
+
+.portfolio-demo-actions .demo-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--demo-link-min-height);
+  padding: var(--space-2) var(--space-4);
+  border: var(--line-width) solid var(--color-line-strong);
+  border-radius: var(--radius-small);
+  text-decoration: none;
+}
+
+.portfolio-demo-actions .demo-link-primary {
+  background: var(--color-blue-soft);
+}
+
+.portfolio-demo-actions .demo-link:hover {
+  border-color: var(--color-blue);
+  background: var(--color-blue-soft);
+}
