@@ -247,10 +247,19 @@ tbody tr:hover td { background: var(--selected); }
       `<button type="button" data-action="preset" data-preset="${key}">${label}</button>`).join("")}</div>` : ""}<p id="filter-status" class="status danger" role="status"></p></div>`);
   }
 
+  function matchesSearch(row, query) {
+    if (!query) return true;
+    const fields = [
+      row.code, row.corp, row.site, row.client, row.owner, row.manager,
+      ...(row.lines ?? []).flatMap((line) => [line.name, line.spec, line.unit]),
+    ];
+    return fields.some((value) => String(value ?? "").toLowerCase().includes(query));
+  }
+
   function filteredRows() {
     const current = filters[active] || { q: "", from: "", to: "", status: "" };
-    return orders.filter((row) => (!current.q || Object.values(row).some((value) =>
-      String(value).toLowerCase().includes(current.q.toLowerCase()))) &&
+    const query = (current.q || "").trim().toLowerCase();
+    return orders.filter((row) => matchesSearch(row, query) &&
       (!current.from || row.date >= current.from) && (!current.to || row.date <= current.to) &&
       (!current.status || row.status === current.status));
   }

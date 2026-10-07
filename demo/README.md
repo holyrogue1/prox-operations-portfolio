@@ -15,6 +15,10 @@ Edit the files in `source/`, then run `node build.mjs` to regenerate `index.html
 The build uses only Node's standard library. Icons and the existing public
 portfolio mark are embedded so the page works without external asset requests.
 
+Run `node --test tests/search.test.mjs` to check the demo's search and its
+interaction with date filters, status filters and pagination. These tests use
+fabricated fixtures and Node's standard library only.
+
 ## Behavior
 
 Responsive views, search, date presets, pagination, project detail dialogs,
@@ -22,6 +26,12 @@ keyboard dismissal, illustrative unit-price arithmetic, synthetic messages and
 reset are implemented locally. Edits exist only in page memory. Refreshing or
 resetting restores the fabricated fixtures. The demo does not send mail or log in
 to any service, and it does not reproduce company pricing or approval rules.
+
+Search matches project codes, corporations, sites, clients, sales/construction
+contacts and line-item names, specifications and units. Matching is a
+case-insensitive substring search with surrounding query whitespace removed.
+Amounts, quantities and internal IDs are not search fields; dates and status
+remain separate filters.
 
 ## Publication Boundary
 
