@@ -29,3 +29,35 @@
 .tower-case .tower-details{margin-top:36px;padding:22px 0}
 .tower-case .tower-details p{font-size:14px;margin-top:16px}
 @media(max-width:700px){.tower-case .section-heading h2{font-size:24px;line-height:1.5}.tower-case .section-heading{margin-bottom:28px}.tower-case .tower-contributions{gap:28px}.tower-case .tower-hero h1{font-size:40px}.tower-case .tower-lead{font-size:20px}.tower-case .tower-api{gap:28px}}
+
+
+/* Full-width SCM photography; text stays still as the background crossfades. */
+.tower-case .tower-hero{display:grid;max-width:none;min-height:640px;margin:0;padding:0;isolation:isolate}
+.tower-case .tower-hero .hero-content{display:grid;grid-template-columns:1fr;gap:16px;max-width:1240px;width:100%;margin-inline:auto;padding:64px 28px;align-content:center}
+.tower-case .tower-hero h1{font-size:clamp(38px,4vw,52px);line-height:1.2;margin:6px 0 4px;letter-spacing:-.035em}
+.tower-case .tower-hero .hero-gallery .hero-image{position:absolute;inset:0;display:block;width:100%;height:100%;max-height:none;object-fit:cover;object-position:center;opacity:0;transition:opacity 900ms ease-in-out}
+.tower-case .tower-hero .hero-gallery .hero-image.is-active{opacity:.9}
+.tower-case .tower-hero::after{background:linear-gradient(90deg,rgba(6,18,31,.96) 0%,rgba(6,18,31,.88) 43%,rgba(6,18,31,.48) 75%,rgba(6,18,31,.3) 100%)}
+.tower-case .tower-hero .tower-lead{font-size:21px;line-height:1.65;margin:0;max-width:640px}
+.tower-case .tower-hero .tower-summary{font-size:16px;line-height:1.85;max-width:580px;margin:0;word-break:keep-all}
+.tower-case .tower-hero .tower-actions{margin:4px 0 0;gap:12px 20px}
+.tower-case .tower-hero .tower-actions a{padding:8px 12px;border:1px solid var(--color-line-strong);border-radius:4px;background:rgba(9,27,43,.6);font-size:14px}
+.tower-case .tower-hero .tower-actions .tower-demo-primary{background:#173d58}
+.tower-demo-access{font-size:14px;line-height:1.7;color:var(--color-ink);margin:0}
+.tower-demo-access code{font-size:14px;color:var(--color-blue);padding:2px 5px;border:1px solid var(--color-line);border-radius:3px}
+.tower-demo-access span{display:block;font-size:12px;color:var(--color-muted);margin-top:6px}
+.tower-case .tower-hero .tower-note{margin:0;font-size:12px;line-height:1.7;max-width:610px}
+.tower-case .tower-hero .hero-controls{margin-top:8px;gap:12px}
+.tower-case .tower-hero .tower-image-note{font-size:11px;line-height:1.5;color:var(--color-muted);margin:0}
+.tower-case .tower-details .tower-hero-map{max-width:680px;margin:28px 0 0}
+@media(max-width:700px){.tower-case .tower-hero{min-height:680px}.tower-case .tower-hero .hero-content{padding:40px 20px;gap:16px}.tower-case .tower-hero h1{font-size:38px}.tower-case .tower-hero .tower-lead{font-size:19px}.tower-case .tower-hero::after{background:linear-gradient(90deg,rgba(6,18,31,.96),rgba(6,18,31,.79))}.tower-case .tower-hero .hero-gallery .hero-image{object-position:68% center}.tower-case .tower-hero .tower-actions{gap:10px}}
+@media(prefers-reduced-motion:reduce){.tower-case .tower-hero .hero-gallery .hero-image{transition:none}}
+
+.tower-case .tower-hero .hero-content{gap:12px;padding-block:48px}.tower-case .tower-hero .tower-lead{font-size:20px;line-height:1.55}.tower-case .tower-hero .tower-summary{font-size:15px;line-height:1.75}.tower-case .tower-hero .tower-actions{margin:0}.tower-case .tower-hero .tower-note{font-size:11px;line-height:1.6}.tower-case .tower-hero .tower-image-note{font-size:10px}
+
+/* Four learning stages: 01 | 02, then 03 | 04. */
+.tower-case .tower-loop{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 48px;max-width:none;margin-bottom:32px}
+.tower-case .tower-loop li{padding:0}
+.tower-case .section-heading{justify-items:center}
+.tower-case .section-heading h2,.tower-case .section-heading>.rule-label{text-align:center}
+@media(max-width:600px){.tower-case .tower-loop{grid-template-columns:1fr;gap:24px}}

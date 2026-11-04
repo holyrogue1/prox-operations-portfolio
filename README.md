@@ -7,7 +7,7 @@ The `demo/` directory is a separately authored, open-source presentation prototy
 Company application source, databases, spreadsheets, credentials, operating settings and security implementations are not part of this demo release. The demo license does not apply to other portfolio materials or the product mark.
 
 
-## 조달청 컨트롤 타워
+## 공공조달 컨트롤타워
 
 [프로젝트 소개](https://holyrogue1.github.io/prox-operations-portfolio/control-tower/) · [모두모아](https://modumoa2026.netlify.app/) · [에이몬스 SCM](https://amons.netlify.app/#/materials-overview)
 
