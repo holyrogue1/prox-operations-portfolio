@@ -262,3 +262,8 @@ Python tests in the personal project summary. Include date and test scope;
 do not describe it as current test coverage, model accuracy, or business impact.
 Reuse project-impact typography and spacing. No new visual tokens or assets.
 Historical public Git commits are not rewritten by this forward release.
+
+
+## Procurement Control Tower / 2026-11-03
+
+Insert the project after Dugong and before the personal portfolio in all six entry-page switchers. Keep the established navy palette, typography and original case-study evidence intact. The new concise Korean case emphasizes the author's contribution as an educator: teaching ML fundamentals, translating scenarios into applications, architecture and AI-assisted implementation review. Group Modumoa and Amons under one control-tower case. Actual captures show synthetic scenarios, not invented product mockups. A code-native SVG communicates the future integrated architecture. Clearly separate two current applications from the planned unified control tower, and synthetic ML evaluation from operating outcomes. Keep engineering detail collapsed; no credentials or private source are published. Use the official CI source only as an identifying mark, not endorsement.
