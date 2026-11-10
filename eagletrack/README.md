@@ -8,9 +8,6 @@ workbooks, connection settings or business records.
 - `demo/index.html`: synthetic browser-only direct-entry demo. No Excel uploads.
 - `demo/model.js`: isolated sample calculations and validation.
 - `assets/demo-*.png`: screenshots captured from this synthetic demo.
-- `assets/csharp-*.png`: real C# WPF application captures from a synthetic-only
-  validation run on 2026-11-09, visually checked before inclusion. These are not
-  browser mockups. Fixture counts and amounts are not business performance.
 - `assets/eagletrack.svg`: user-provided product mark; not included in a software license.
 - `demo/vendor`: Lucide icons with their upstream license.
 
@@ -43,6 +40,5 @@ scope, not a claim that all enterprise modules are complete.
 
 The private application uses C#, .NET 10, WPF and ASP.NET Core with separate
 Contracts, Domain, Application and Infrastructure projects. Only high-level
-architecture and synthetic screenshots are published, not its source or binary.
-The JavaScript browser demo is independent. Its same-BOM-price calculation is
-not identical to the native screenshot's separate instruction-price fixture.
+architecture is published, not its screenshots, source, or binary.
+The JavaScript browser demo and its screenshots are independent.
