@@ -267,3 +267,13 @@ Historical public Git commits are not rewritten by this forward release.
 ## Procurement Control Tower / 2026-11-03
 
 Insert the project after Dugong and before the personal portfolio in all six entry-page switchers. Keep the established navy palette, typography and original case-study evidence intact. The new concise Korean case emphasizes the author's contribution as an educator: teaching ML fundamentals, translating scenarios into applications, architecture and AI-assisted implementation review. Group Modumoa and Amons under one control-tower case. Actual captures show synthetic scenarios, not invented product mockups. A code-native SVG communicates the future integrated architecture. Clearly separate two current applications from the planned unified control tower, and synthetic ML evaluation from operating outcomes. Keep engineering detail collapsed; no credentials or private source are published. Use the official CI source only as an identifying mark, not endorsement.
+
+## EagleTrack Project Navigation and Hero
+
+Place EagleTrack between public procurement and the personal portfolio on
+the project entry pages in both languages. Place its supplied dark mark on
+the shared light ink token so the original symbol remains visible.
+Reuse the full-width photo gallery, scrim, five-second controls, and content
+grid. Label the fictional manufacturing line and control room as generated
+backgrounds. Keep C# WPF captures and browser demo imagery separate; publish
+only inspected synthetic screenshots with neutral labels.

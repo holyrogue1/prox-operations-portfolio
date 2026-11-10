@@ -2,9 +2,8 @@
 
 Scope: independently authored static demo and case page. No company source,
 records, configuration, workbook or real-data screenshots may be copied here.
-Native C# WPF screenshots are not published. Before any future inclusion,
-check that the entire image uses synthetic data and neutral labels, with no
-company identifiers, and label it separately from the browser prototype.
+Native C# WPF screenshots must use synthetic data and neutral labels, with no
+company identifiers, and be labelled separately from the browser prototype.
 
 Preserve the parent portfolio. Link to a dedicated EagleTrack case page and
 direct-entry demo. Existing portfolio tokens govern the introduction; the

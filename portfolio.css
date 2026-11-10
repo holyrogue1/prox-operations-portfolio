@@ -29,3 +29,4 @@
 .prox-case .process-log,.prox-case .roadmap-rail,.prox-case .product-screen-grid{margin-top:40px}
 .prox-case .reconciliation{gap:40px}
 @media(max-width:760px){.prox-case .section{padding-block:48px}.prox-case :is(.section-reading,.reconciliation-intro,.process-intro,.roadmap-intro,.product-evidence-copy){gap:20px}.prox-case .process-log,.prox-case .roadmap-rail,.prox-case .product-screen-grid{margin-top:32px}}
+.project-mark.eagletrack-mark{background-color:var(--color-ink);object-fit:contain}

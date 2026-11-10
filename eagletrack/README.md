@@ -8,6 +8,10 @@ workbooks, connection settings or business records.
 - `demo/index.html`: synthetic browser-only direct-entry demo. No Excel uploads.
 - `demo/model.js`: isolated sample calculations and validation.
 - `assets/demo-*.png`: screenshots captured from this synthetic demo.
+- `assets/wpf-demo-*.png`: native C# WPF captures from an isolated run using
+  synthetic data and neutral organization labels.
+- `assets/hero-*.webp`: generated illustrations of a fictional manufacturing line
+  and monitoring room; neither is an application screenshot.
 - `assets/eagletrack.svg`: user-provided product mark; not included in a software license.
 - `demo/vendor`: Lucide icons with their upstream license.
 
@@ -40,5 +44,6 @@ scope, not a claim that all enterprise modules are complete.
 
 The private application uses C#, .NET 10, WPF and ASP.NET Core with separate
 Contracts, Domain, Application and Infrastructure projects. Only high-level
-architecture is published, not its screenshots, source, or binary.
-The JavaScript browser demo and its screenshots are independent.
+architecture and selected synthetic captures are published. Company source,
+executables and operational records remain private. The JavaScript browser
+demo and its screenshots are independent.
