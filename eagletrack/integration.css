@@ -1,0 +1,5 @@
+#eagletrack { min-width: 0; }
+#eagletrack h2 { overflow-wrap: anywhere; letter-spacing: 0; }
+#eagletrack .product-screen { margin: 24px 0 0; min-width: 0; }
+#eagletrack .product-screen img { display: block; width: 100%; max-width: 100%; height: auto; }
+#eagletrack figcaption { margin-top: 12px; color: var(--color-muted); font-size: 14px; }
